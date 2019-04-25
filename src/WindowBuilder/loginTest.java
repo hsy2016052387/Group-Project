@@ -18,7 +18,7 @@ public class loginTest {
 		User user=new User();
 		user.SetAccount();
 		assertEquals("2016052387", user.GetAccount());
-		login.textField.setText("");
+		//login.textField.setText("");
 		//while(true);
 	}
 	
@@ -29,6 +29,8 @@ public class loginTest {
 		char[] a = {};
 		assertEquals(true,log.true_Account(s, a));
 		//while(true);
+		s = "2019";
+		assertEquals(false, log.true_Account(s, a));
 	}
 
 }
