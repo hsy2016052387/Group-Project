@@ -25,18 +25,18 @@ public class WorkInfo extends JPanel {
 		panel.setBounds(0, 0, 982, 524);
 		add(panel);
 		
-		JLabel label = new JLabel("²éÑ¯¾ÍÒµÐÅÏ¢");
+		JLabel label = new JLabel("ï¿½ï¿½Ñ¯ï¿½ï¿½Òµï¿½ï¿½Ï¢");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Dialog", Font.BOLD, 24));
 		label.setBounds(364, 74, 213, 37);
 		panel.add(label);
 		
-		JLabel label_1 = new JLabel("Å©ÐÐ¹ã¶«Ê¡·ÖÐÐ2019´º¼¾Ð£Ô°ÕÐÆ¸¹«¸æ");
+		JLabel label_1 = new JLabel("Å©ï¿½Ð¹ã¶«Ê¡ï¿½ï¿½ï¿½ï¿½2019ï¿½ï¿½ï¿½ï¿½Ð£Ô°ï¿½ï¿½Æ¸ï¿½ï¿½ï¿½ï¿½");
 		label_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				MainInterface.panel.removeAll();
-				MainInterface.panel.add(new workDetail());
+				MainInterface.panel.add(new WorkDetail());
 				MainInterface.panel.updateUI();
 			}
 		});
@@ -50,7 +50,7 @@ public class WorkInfo extends JPanel {
 		label_2.setBounds(613, 141, 110, 37);
 		panel.add(label_2);
 		
-		JLabel label_3 = new JLabel("Ê±´úÖÐ¹ú2019´º¼¾Ð£Ô°ÕÐÆ¸¹«¸æ");
+		JLabel label_3 = new JLabel("Ê±ï¿½ï¿½ï¿½Ð¹ï¿½2019ï¿½ï¿½ï¿½ï¿½Ð£Ô°ï¿½ï¿½Æ¸ï¿½ï¿½ï¿½ï¿½");
 		label_3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_3.setBounds(133, 191, 398, 37);
 		panel.add(label_3);
@@ -61,7 +61,7 @@ public class WorkInfo extends JPanel {
 		label_4.setBounds(613, 191, 110, 37);
 		panel.add(label_4);
 		
-		JLabel label_5 = new JLabel("¹ã·¢¿¨2019´º¼¾Ð£Ô°¡ª¡ª²»Ò»youngµÄ¾«²Ê");
+		JLabel label_5 = new JLabel("ï¿½ã·¢ï¿½ï¿½2019ï¿½ï¿½ï¿½ï¿½Ð£Ô°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»youngï¿½Ä¾ï¿½ï¿½ï¿½");
 		label_5.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_5.setBounds(133, 241, 398, 37);
 		panel.add(label_5);
@@ -72,12 +72,12 @@ public class WorkInfo extends JPanel {
 		label_6.setBounds(613, 241, 110, 37);
 		panel.add(label_6);
 		
-		JLabel label_7 = new JLabel("ÖÐ¿Ï¼¯ÍÅÕÐÆ¸ÆôÊÂ");
+		JLabel label_7 = new JLabel("ï¿½Ð¿Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½Æ¸ï¿½ï¿½ï¿½ï¿½");
 		label_7.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_7.setBounds(133, 291, 398, 37);
 		panel.add(label_7);
 		
-		JLabel label_8 = new JLabel("2018º£½»»áÈ«Çò´óÑ§ÉúË«Ñ¡ÕÐÆ¸»á");
+		JLabel label_8 = new JLabel("2018ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Ë«Ñ¡ï¿½ï¿½Æ¸ï¿½ï¿½");
 		label_8.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_8.setBounds(133, 341, 398, 37);
 		panel.add(label_8);

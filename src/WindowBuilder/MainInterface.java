@@ -122,7 +122,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				panel.removeAll();
-				panel.add(new workDetail());
+				panel.add(new WorkDetail());
 				panel.updateUI();
 			}
 		});
@@ -195,7 +195,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				panel.removeAll();
-				panel.add(new news());
+				panel.add(new News());
 				panel.updateUI();
 			}
 		});
@@ -207,7 +207,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				panel.removeAll();
-				panel.add(new notification());
+				panel.add(new Notification());
 				panel.updateUI();
 			}
 		});
@@ -219,7 +219,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				panel.removeAll();
-				panel.add(new balance());
+				panel.add(new Balance());
 				panel.updateUI();
 			}
 		});
@@ -235,7 +235,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				panel.removeAll();
-				panel.add(new template1());
+				panel.add(new Template());
 				panel.updateUI();
 			}
 		});
@@ -247,7 +247,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				panel.removeAll();
-				panel.add(new request());
+				panel.add(new Request());
 				panel.updateUI();
 			}
 		});
@@ -333,7 +333,7 @@ public class MainInterface {
 					break;
 				case 3:
 					frame.dispose();
-					login log_in = new login();
+					Login log_in = new Login();
 					break;
 				default:
 					break;

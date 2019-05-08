@@ -7,12 +7,12 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class template1 extends JPanel {
+public class Template extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public template1() {
+	public Template() {
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(0, 0, 982, 524);
 		setLayout(null);

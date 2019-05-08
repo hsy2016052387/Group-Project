@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class request extends JPanel {
+public class Request extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -28,7 +28,7 @@ public class request extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public request() {
+	public Request() {
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(0, 0, 982, 524);
 		setLayout(null);
@@ -48,13 +48,13 @@ public class request extends JPanel {
 		JButton button = new JButton("\u8BF7\u5047\u6761");
 		
 		
-		button.setFont(new Font("ËÎÌå", Font.PLAIN, 28));
+		button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 28));
 		button.setBounds(335, 168, 216, 100);
 		panel_1.add(button);
 		
 		JButton button_1 = new JButton("\u8BFE\u5BA4\u7533\u8BF7");
 		
-		button_1.setFont(new Font("ËÎÌå", Font.PLAIN, 28));
+		button_1.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 28));
 		button_1.setBounds(335, 297, 216, 93);
 		panel_1.add(button_1);
 		
@@ -72,42 +72,42 @@ public class request extends JPanel {
 		
 		textField = new JTextField();
 		textField.setText("\u59D3\u540D");
-		textField.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField.setColumns(10);
 		textField.setBounds(183, 116, 122, 39);
 		panel_4.add(textField);
 		
 		textField_1 = new JTextField();
 		textField_1.setText("\u5B66\u53F7");
-		textField_1.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_1.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_1.setColumns(10);
 		textField_1.setBounds(471, 116, 106, 39);
 		panel_4.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setText("\u7533\u8BF7\u8BFE\u5BA4");
-		textField_2.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_2.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_2.setColumns(10);
 		textField_2.setBounds(183, 157, 122, 36);
 		panel_4.add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setText("\u8BFE\u5BA4\u7C7B\u522B");
-		textField_3.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_3.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_3.setColumns(10);
 		textField_3.setBounds(471, 157, 106, 36);
 		panel_4.add(textField_3);
 		
 		textField_4 = new JTextField();
 		textField_4.setText("\u7528\u9014");
-		textField_4.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_4.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_4.setColumns(10);
 		textField_4.setBounds(183, 233, 122, 54);
 		panel_4.add(textField_4);
 		
 		textField_5 = new JTextField();
 		textField_5.setText("\u7533\u8BF7\u65F6\u95F4");
-		textField_5.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_5.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_5.setColumns(10);
 		textField_5.setBounds(183, 193, 122, 39);
 		panel_4.add(textField_5);
@@ -142,7 +142,7 @@ public class request extends JPanel {
 		panel_4.add(button_2);
 		
 		JLabel label = new JLabel("\u8BFE\u5BA4\u7533\u8BF7");
-		label.setFont(new Font("ËÎÌå", Font.PLAIN, 28));
+		label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 28));
 		label.setBounds(401, 61, 143, 40);
 		panel_4.add(label);
 		
@@ -164,34 +164,34 @@ public class request extends JPanel {
 		panel_5.add(button_3);
 		
 		JLabel label_1 = new JLabel("\u8BF7\u5047\u6761");
-		label_1.setFont(new Font("ËÎÌå", Font.PLAIN, 28));
+		label_1.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 28));
 		label_1.setBounds(403, 56, 118, 53);
 		panel_5.add(label_1);
 		
 		textField_6 = new JTextField();
 		textField_6.setText("\u59D3\u540D");
-		textField_6.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_6.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_6.setColumns(10);
 		textField_6.setBounds(182, 143, 96, 43);
 		panel_5.add(textField_6);
 		
 		textField_7 = new JTextField();
 		textField_7.setText("\u5B66\u9662");
-		textField_7.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_7.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_7.setColumns(10);
 		textField_7.setBounds(182, 186, 96, 36);
 		panel_5.add(textField_7);
 		
 		textField_8 = new JTextField();
 		textField_8.setText("\u8BF7\u5047\u539F\u56E0");
-		textField_8.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_8.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_8.setColumns(10);
 		textField_8.setBounds(182, 223, 96, 53);
 		panel_5.add(textField_8);
 		
 		textField_9 = new JTextField();
 		textField_9.setText("\u8BF7\u5047\u65F6\u95F4");
-		textField_9.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_9.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_9.setColumns(10);
 		textField_9.setBounds(182, 276, 96, 36);
 		panel_5.add(textField_9);
@@ -202,7 +202,7 @@ public class request extends JPanel {
 		
 		textField_10 = new JTextField();
 		textField_10.setText("\u5B66\u53F7");
-		textField_10.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_10.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_10.setColumns(10);
 		textField_10.setBounds(450, 143, 101, 43);
 		panel_5.add(textField_10);
@@ -213,7 +213,7 @@ public class request extends JPanel {
 		
 		textField_11 = new JTextField();
 		textField_11.setText("\u4E13\u4E1A");
-		textField_11.setFont(new Font("ËÎÌå", Font.PLAIN, 20));
+		textField_11.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 20));
 		textField_11.setColumns(10);
 		textField_11.setBounds(450, 186, 101, 36);
 		panel_5.add(textField_11);

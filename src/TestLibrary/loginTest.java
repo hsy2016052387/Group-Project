@@ -1,9 +1,12 @@
-package WindowBuilder;
+package TestLibrary;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import WindowBuilder.User;
+import WindowBuilder.Login;
 
 public class loginTest {
 
@@ -13,8 +16,8 @@ public class loginTest {
 
 	@Test
 	public void testLogin() {
-		new login();
-		login.textField.setText("2016052387");
+		new Login();
+		Login.textField.setText("2016052387");
 		User user=new User();
 		user.SetAccount();
 		assertEquals("2016052387", user.GetAccount());
@@ -24,7 +27,7 @@ public class loginTest {
 	
 	@Test
 	public void testTrue_Account() {
-		login log = new login();
+		Login log = new Login();
 		String s = new String("");
 		char[] a = {};
 		assertEquals(true,log.true_Account(s, a));

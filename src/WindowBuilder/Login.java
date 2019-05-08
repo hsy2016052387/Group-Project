@@ -16,10 +16,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class login {
+public class Login {
 
 	private JFrame frame;
-	static JTextField textField;
+	public static JTextField textField;
 	private JPasswordField passwordField;
 
 	/**
@@ -29,7 +29,7 @@ public class login {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					login window = new login();
+					Login window = new Login();
 					//window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class login {
 	/**
 	 * Create the application.
 	 */
-	public login() {
+	public Login() {
 		initialize();
 		frame.setVisible(true);
 	}

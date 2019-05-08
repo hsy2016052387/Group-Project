@@ -5,7 +5,7 @@ public class User {
 	private static String loginpassword;
 	
 	public void SetAccount() {
-		loginaccount=login.textField.getText();
+		loginaccount=Login.textField.getText();
 	}
 	
 	public String GetAccount() {
