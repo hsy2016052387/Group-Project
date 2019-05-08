@@ -27,10 +27,7 @@ public class Notification extends JPanel {
 	 */
 	private int page = 0;
 	public Notification() {
-		if(CollegeNotiCrawer.CollegeNotiList.size()==0) {
-			CollegeNotiCrawer workInfoCrawer = new CollegeNotiCrawer();
-			workInfoCrawer.getCollegeNoti();
-		}
+		
 		
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(0, 0, 982, 524);

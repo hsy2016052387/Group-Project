@@ -64,9 +64,4 @@ public class CollegeNotiCrawer {
 	
 	}
 	
-	public static void main(String[] args) {
-		CollegeNotiCrawer college = new CollegeNotiCrawer();
-		college.getCollegeNoti();
-;	}
-	
 }

@@ -2,6 +2,7 @@ package WindowBuilder;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.Insets;
@@ -39,7 +40,11 @@ import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+
+import ClassLibrary.*;
+
 import javax.swing.border.BevelBorder;
+
 
 public class MainInterface {
 	static JPanel panel = new JPanel();
@@ -49,6 +54,7 @@ public class MainInterface {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -61,12 +67,15 @@ public class MainInterface {
 		});
 	}
 
+	
 	/**
 	 * Create the application.
 	 */
 	public MainInterface() {
 		
 		initialize();
+		new NewsInfo().start();
+		new CollegeInfo().start();
 		frame.setVisible(true);  
 		//test
 	}

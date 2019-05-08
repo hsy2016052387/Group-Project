@@ -25,19 +25,21 @@ public class News extends JPanel {
 	 */
 	private int page = 0;
 	public News() {
-		if(NewsCrawer.NewsList.size()==0) {
-			NewsCrawer workInfoCrawer = new NewsCrawer();
-			workInfoCrawer.getNews();
-		}
+		
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(0, 0, 982, 524);
 		setLayout(null);
 		
+		JPanel All = new JPanel();
+		All.setBounds(0, 0, 982, 524);
+		add(All);
+		All.setLayout(null);
+		
 		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 982, 524);
+		All.add(panel);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 982, 524);
-		add(panel);
 		
 		JLabel label = new JLabel("暨大头条");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -46,6 +48,7 @@ public class News extends JPanel {
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel();
+		
 //		label_1.addMouseListener(new MouseAdapter() {
 //			@Override
 //			public void mousePressed(MouseEvent arg0) {
@@ -162,6 +165,104 @@ public class News extends JPanel {
 		button.setFont(new Font("宋体", Font.PLAIN, 15));
 		button.setBounds(509, 391, 113, 27);
 		panel.add(button);
+		
+		
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 982, 530);
+		//add(scrollPane);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		JTextArea content = new JTextArea();
+		content.setLineWrap(true);
+		content.setEditable(false);
+		content.setText("");
+		scrollPane.setViewportView(content);
+		content.setFont(new Font("宋体", Font.PLAIN, 18));
+		
+		JPanel panel_6 = new JPanel();
+		scrollPane.setColumnHeaderView(panel_6);
+		
+		JLabel label_26 = new JLabel("\u5173\u4E8E\u5347\u7EA7\u7535\u5B50\u90AE\u7BB1\u7CFB\u7EDF\u7684\u901A\u77E5     ");
+		label_26.setHorizontalAlignment(SwingConstants.CENTER);
+		label_26.setFont(new Font("宋体", Font.PLAIN, 18));
+		label_26.setBackground(Color.WHITE);
+		panel_6.add(label_26);
+		
+		JLabel label_27 = new JLabel("\u8FD4\u56DE");
+		
+		
+		label_27.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_6.add(label_27);
+		
+		
+		label_27.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				All.removeAll();
+				All.add(panel);
+				All.updateUI();
+			}
+		});
+		
+		label_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				content.setText(NewsCrawer.contentlist.get(page*5+0));
+				content.setCaretPosition(0);
+				label_26.setText(NewsCrawer.NewsList.get(page*5+0));
+				All.removeAll();
+				All.add(scrollPane);
+				All.updateUI();
+			}
+		});
+		
+		label_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				content.setText(NewsCrawer.contentlist.get(page*5+1));
+				content.setCaretPosition(0);
+				label_26.setText(NewsCrawer.NewsList.get(page*5+1));
+				All.removeAll();
+				All.add(scrollPane);
+				All.updateUI();
+			}
+		});
+		
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				content.setText(NewsCrawer.contentlist.get(page*5+2));
+				content.setCaretPosition(0);
+				label_26.setText(NewsCrawer.NewsList.get(page*5+2));
+				All.removeAll();
+				All.add(scrollPane);
+				All.updateUI();
+			}
+		});
+		
+		label_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				content.setText(NewsCrawer.contentlist.get(page*5+3));
+				content.setCaretPosition(0);
+				label_26.setText(NewsCrawer.NewsList.get(page*5+3));
+				All.removeAll();
+				All.add(scrollPane);
+				All.updateUI();
+			}
+		});
+		
+		label_8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				content.setText(NewsCrawer.contentlist.get(page*5+4));
+				content.setCaretPosition(0);
+				label_26.setText(NewsCrawer.NewsList.get(page*5+4));
+				All.removeAll();
+				All.add(scrollPane);
+				All.updateUI();
+			}
+		});
 	}
 }
