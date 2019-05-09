@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/Study/开发包/Jsoup/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse4.7/eclipse-workspace/Bad/jsoup-1.11.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
