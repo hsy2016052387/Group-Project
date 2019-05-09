@@ -27,7 +27,7 @@ public class PersonInfo extends JPanel {
 		panel.setBounds(0, 0, 982, 524);
 		add(panel);
 		
-		JLabel label = new JLabel("±‡º≠∏ˆ»À–≈œ¢");
+		JLabel label = new JLabel("‰∏™‰∫∫‰ø°ÊÅØËÆæÁΩÆ");
 		label.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label.setBounds(42, 46, 286, 23);
 		panel.add(label);
@@ -36,17 +36,17 @@ public class PersonInfo extends JPanel {
 		separator.setBounds(42, 79, 633, 46);
 		panel.add(separator);
 		
-		JLabel label_1 = new JLabel("–’√˚£∫");
+		JLabel label_1 = new JLabel("ÂßìÂêç");
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_1.setBounds(42, 149, 75, 23);
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel("ª∆ÀÃ—Ô");
+		JLabel label_2 = new JLabel("ÈªÑÈ¢ÇÊâ¨");
 		label_2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_2.setBounds(155, 150, 75, 21);
 		panel.add(label_2);
 		
-		JLabel label_3 = new JLabel("—ß∫≈£∫");
+		JLabel label_3 = new JLabel("Â≠¶Âè∑");
 		label_3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_3.setBounds(42, 212, 75, 23);
 		panel.add(label_3);
@@ -56,27 +56,27 @@ public class PersonInfo extends JPanel {
 		label_4.setBounds(155, 212, 169, 23);
 		panel.add(label_4);
 		
-		JLabel label_5 = new JLabel("—ß‘∫£∫");
+		JLabel label_5 = new JLabel("Â≠¶Èô¢");
 		label_5.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_5.setBounds(42, 277, 75, 23);
 		panel.add(label_5);
 		
-		JLabel label_6 = new JLabel("÷«ƒ‹ø∆—ß”Îπ§≥Ã—ß‘∫");
+		JLabel label_6 = new JLabel("Êô∫ËÉΩÁßëÂ≠¶‰∏éÂ∑•Á®ãÂ≠¶Èô¢");
 		label_6.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_6.setBounds(155, 277, 173, 23);
 		panel.add(label_6);
 		
-		JLabel label_7 = new JLabel("◊®“µ£∫");
+		JLabel label_7 = new JLabel("‰∏ì‰∏ö");
 		label_7.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_7.setBounds(42, 342, 75, 23);
 		panel.add(label_7);
 		
-		JLabel label_8 = new JLabel("»Ìº˛π§≥Ã");
+		JLabel label_8 = new JLabel("ËΩØ‰ª∂Â∑•Á®ã");
 		label_8.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_8.setBounds(155, 342, 173, 23);
 		panel.add(label_8);
 		
-		JLabel label_9 = new JLabel("Àﬁ…·∫≈£∫");
+		JLabel label_9 = new JLabel("ÂÆøËàç");
 		label_9.setFont(new Font("Dialog", Font.PLAIN, 18));
 		label_9.setBounds(42, 406, 75, 23);
 		panel.add(label_9);
@@ -89,7 +89,7 @@ public class PersonInfo extends JPanel {
 		textField.setBounds(155, 404, 106, 27);
 		panel.add(textField);
 		
-		JButton button = new JButton("±£¥Ê");
+		JButton button = new JButton("‰øùÂ≠ò");
 		button.setBounds(437, 461, 97, 32);
 		panel.add(button);
 
