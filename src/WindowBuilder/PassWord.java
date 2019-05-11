@@ -52,17 +52,17 @@ public class PassWord extends JPanel {
 		scrollPane_2.setViewportView(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_6 = new JLabel("网站：     Study平台(https://study.jnu.edu.cn)");
+		JLabel lblNewLabel_6 = new JLabel("\u7f51\u7ad9\uff1a\u0020\u0020\u0020\u0020\u0020\u0053\u0074\u0075\u0064\u0079\u5e73\u53f0\u0028\u0068\u0074\u0074\u0070\u0073\u003a\u002f\u002f\u0073\u0074\u0075\u0064\u0079\u002e\u006a\u006e\u0075\u002e\u0065\u0064\u0075\u002e\u0063\u006e\u0029");
 		lblNewLabel_6.setBounds(88, 32, 425, 33);
 		lblNewLabel_6.setFont(new Font("����", Font.PLAIN, 18));
 		panel_1.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("账号：");
+		JLabel lblNewLabel_7 = new JLabel("\u8d26\u53f7\uff1a");
 		lblNewLabel_7.setBounds(88, 89, 77, 27);
 		lblNewLabel_7.setFont(new Font("����", Font.PLAIN, 18));
 		panel_1.add(lblNewLabel_7);
 		
-		JLabel label_24 = new JLabel("密码：");
+		JLabel label_24 = new JLabel("\u5bc6\u7801\uff1a");
 		label_24.setBounds(88, 139, 77, 27);
 		label_24.setFont(new Font("����", Font.PLAIN, 18));
 		panel_1.add(label_24);
@@ -83,17 +83,17 @@ public class PassWord extends JPanel {
 		separator_3.setBounds(88, 192, 532, 2);
 		panel_1.add(separator_3);
 		
-		JLabel lblhttpsijnueducn = new JLabel("网站：     数字暨大(https://i.jnu.edu.cn)  ");
+		JLabel lblhttpsijnueducn = new JLabel("\u7f51\u7ad9\uff1a\u0020\u0020\u0020\u0020\u0020\u6570\u5b57\u66a8\u5927\u0028\u0068\u0074\u0074\u0070\u0073\u003a\u002f\u002f\u0069\u002e\u006a\u006e\u0075\u002e\u0065\u0064\u0075\u002e\u0063\u006e\u0029  ");
 		lblhttpsijnueducn.setBounds(88, 220, 425, 33);
 		lblhttpsijnueducn.setFont(new Font("����", Font.PLAIN, 18));
 		panel_1.add(lblhttpsijnueducn);
 		
-		JLabel label_25 = new JLabel("账号：");
+		JLabel label_25 = new JLabel("\u8d26\u53f7\uff1a");
 		label_25.setBounds(88, 266, 77, 27);
 		label_25.setFont(new Font("����", Font.PLAIN, 18));
 		panel_1.add(label_25);
 		
-		JLabel label_26 = new JLabel("密码：");
+		JLabel label_26 = new JLabel("\u5bc6\u7801\uff1a");
 		label_26.setBounds(88, 314, 77, 27);
 		label_26.setFont(new Font("����", Font.PLAIN, 18));
 		panel_1.add(label_26);
@@ -114,17 +114,17 @@ public class PassWord extends JPanel {
 		separator_4.setBounds(88, 365, 532, 2);
 		panel_1.add(separator_4);
 		
-		JLabel label_27 = new JLabel("校园卡");
+		JLabel label_27 = new JLabel("\u6821\u56ed\u5361");
 		label_27.setFont(new Font("����", Font.PLAIN, 18));
 		label_27.setBounds(88, 396, 425, 33);
 		panel_1.add(label_27);
 		
-		JLabel label_28 = new JLabel("账号：");
+		JLabel label_28 = new JLabel("\u8d26\u53f7\uff1a");
 		label_28.setFont(new Font("����", Font.PLAIN, 18));
 		label_28.setBounds(88, 445, 77, 27);
 		panel_1.add(label_28);
 		
-		JLabel label_29 = new JLabel("密码：");
+		JLabel label_29 = new JLabel("\u5bc6\u7801\uff1a");
 		label_29.setFont(new Font("����", Font.PLAIN, 18));
 		label_29.setBounds(88, 491, 77, 27);
 		panel_1.add(label_29);
