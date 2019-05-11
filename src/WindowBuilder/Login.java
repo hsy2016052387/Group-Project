@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import chrriis.common.UIUtils;
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -26,6 +29,8 @@ public class Login {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		UIUtils.setPreferredLookAndFeel();
+		NativeInterface.open();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -36,6 +41,7 @@ public class Login {
 				}
 			}
 		});
+		//NativeInterface.runEventPump();
 	}
 
 	/**

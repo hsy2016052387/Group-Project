@@ -50,8 +50,8 @@ public class WorkInfo extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				MainInterface.panel.removeAll();
-				MainInterface.panel.add(new WorkDetail());
-				//new WorkDetailWeb("www.baidu.com", MainInterface.panel);
+				MainInterface.panel.add(new BrowserPanel(WorkInfoCrawer.linkList.get(page*5)));
+				
 				MainInterface.panel.updateUI();
 			}
 		});

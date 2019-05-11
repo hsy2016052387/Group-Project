@@ -44,17 +44,21 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
 
 import ClassLibrary.*;
+import chrriis.common.UIUtils;
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 
 public class MainInterface {
 	static JPanel panel = new JPanel();
 	static logClass logClass = new logClass();
-	static JFrame frame;
+	private JFrame frame;
 	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		UIUtils.setPreferredLookAndFeel();
+		NativeInterface.open();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -65,6 +69,7 @@ public class MainInterface {
 				}
 			}
 		});
+		NativeInterface.runEventPump();
 	}
 
 	/**
@@ -73,9 +78,17 @@ public class MainInterface {
 	public MainInterface() {
 		
 		initialize();
-		new NewsInfoCreate().start();
-		new CollegeInfoCreate().start();
-		new WorkInfoCreate().start();
+		try {
+			new NewsInfoCreate().start();
+			new CollegeInfoCreate().start();
+			new WorkInfoCreate().start();
+		} catch (Exception e) {
+			// TODO: handle exception
+			new NewsInfoCreate().start();
+			new CollegeInfoCreate().start();
+			new WorkInfoCreate().start();
+		}
+		
 		frame.setVisible(true);  
 		//test
 	}
@@ -318,6 +331,9 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				logClass.printlog("点击了对接学校论坛");
+				panel.removeAll();
+				panel.add(new BrowserPanel("http://bbs.jnlts.com/"));
+				panel.updateUI();
 			}
 		});
 		mntmNewMenuItem_8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
@@ -371,6 +387,7 @@ public class MainInterface {
 					break;
 				case 3:
 					logClass.printlog("点击了退出登录");
+					panel.removeAll();
 					frame.dispose();
 					Login log_in = new Login();
 					break;
