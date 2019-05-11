@@ -39,7 +39,7 @@ public class WorkInfo extends JPanel {
 		panel.setBounds(0, 0, 982, 524);
 		add(panel);
 		
-		JLabel label = new JLabel("查询就业信息");
+		JLabel label = new JLabel("\u67e5\u8be2\u5c31\u4e1a\u4fe1\u606f");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("宋体", Font.BOLD, 24));
 		label.setBounds(364, 74, 213, 37);
@@ -119,7 +119,7 @@ public class WorkInfo extends JPanel {
 		label_10.setText(WorkInfoCrawer.dateList.get(4));
 		panel.add(label_10);
 		
-		JButton btnNewButton = new JButton("上一页");
+		JButton btnNewButton = new JButton("\u4e0a\u4e00\u9875");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainInterface.logClass.printlog("点击了上一页");
@@ -142,7 +142,7 @@ public class WorkInfo extends JPanel {
 		btnNewButton.setBounds(327, 391, 113, 27);
 		panel.add(btnNewButton);
 		
-		JButton button = new JButton("下一页");
+		JButton button = new JButton("\u4e0b\u4e00\u9875");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MainInterface.logClass.printlog("点击了下一页");

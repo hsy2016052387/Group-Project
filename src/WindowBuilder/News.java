@@ -41,7 +41,7 @@ public class News extends JPanel {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-		JLabel label = new JLabel("暨大头条");
+		JLabel label = new JLabel("\u66a8\u5927\u5934\u6761");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("宋体", Font.BOLD, 24));
 		label.setBounds(364, 74, 213, 37);
@@ -121,7 +121,7 @@ public class News extends JPanel {
 		label_10.setText(NewsCrawer.dateList.get(4));
 		panel.add(label_10);
 		
-		JButton btnNewButton = new JButton("上一页");
+		JButton btnNewButton = new JButton("\u4e0a\u4e00\u9875");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(page>0) {
@@ -143,7 +143,7 @@ public class News extends JPanel {
 		btnNewButton.setBounds(327, 391, 113, 27);
 		panel.add(btnNewButton);
 		
-		JButton button = new JButton("下一页");
+		JButton button = new JButton("\u4e0b\u4e00\u9875");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int curr = (page+2)*5;

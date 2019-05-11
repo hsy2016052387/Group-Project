@@ -69,7 +69,7 @@ public class Notification extends JPanel {
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-		JLabel label = new JLabel("学院通知");
+		JLabel label = new JLabel("\u5b66\u9662\u901a\u77e5");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("宋体", Font.BOLD, 24));
 		label.setBounds(36, 13, 213, 37);
@@ -140,7 +140,7 @@ public class Notification extends JPanel {
 		label_10.setText(CollegeNotiCrawer.dateList.get(4));
 		panel.add(label_10);
 		
-		JButton btnNewButton = new JButton("上一页");
+		JButton btnNewButton = new JButton("\u4e0a\u4e00\u9875");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(page>0) {
@@ -162,7 +162,7 @@ public class Notification extends JPanel {
 		btnNewButton.setBounds(121, 362, 113, 27);
 		panel.add(btnNewButton);
 		
-		JButton button = new JButton("下一页");
+		JButton button = new JButton("\u4e0b\u4e00\u9875");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int curr = (page+2)*5;

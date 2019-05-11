@@ -141,7 +141,7 @@ public class PassWord extends JPanel {
 		textField_6.setBounds(191, 494, 308, 24);
 		panel_1.add(textField_6);
 		
-		JButton btnNewButton_2 = new JButton("保存");
+		JButton btnNewButton_2 = new JButton("\u4fdd\u5b58");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textField_1.setEditable(false);
@@ -155,7 +155,7 @@ public class PassWord extends JPanel {
 		btnNewButton_2.setBounds(542, 484, 113, 27);
 		user_password.add(btnNewButton_2);
 		
-		JButton button = new JButton("编辑");
+		JButton button = new JButton("\u7f16\u8f91");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField_1.setEditable(true);
