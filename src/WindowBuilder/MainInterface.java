@@ -318,6 +318,9 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				logClass.printlog("点击了对接学校论坛");
+				panel.removeAll();
+				panel.add(new Forum());
+				panel.updateUI();
 			}
 		});
 		mntmNewMenuItem_8.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
