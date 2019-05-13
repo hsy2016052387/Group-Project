@@ -332,7 +332,7 @@ public class MainInterface {
 			public void mousePressed(MouseEvent arg0) {
 				logClass.printlog("点击了对接学校论坛");
 				panel.removeAll();
-				panel.add(new BrowserPanel("http://bbs.jnlts.com/"));
+				panel.add(new BrowserPanel("http://tieba.baidu.com/f?kw=%F4%DF%C4%CF%B4%F3%D1%A7&fr=ala0&tpl=5"));
 				panel.updateUI();
 			}
 		});
