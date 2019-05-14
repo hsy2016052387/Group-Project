@@ -73,9 +73,11 @@ public class MainInterface {
 	public MainInterface() {
 		
 		initialize();
-		new NewsInfoCreate().start();
-		new CollegeInfoCreate().start();
 		new WorkInfoCreate().start();
+		new NewsInfoCreate().start();
+		new SchoolInfoCreate().start();
+		new CollegeInfoCreate().start();		
+		new DeptInfoCreate().start();
 		frame.setVisible(true);  
 		//test
 	}

@@ -8,18 +8,18 @@ import org.jsoup.select.Elements;
 import org.jsoup.nodes.Element;
 
 
-public class CollegeNotiCrawer {
-	private final String CollegeNotiUrl = "https://rwxy.jnu.edu.cn/11063/list.htm";
-	private final String CollegeNotiDetailUrlHead = "https://rwxy.jnu.edu.cn";
-	public static ArrayList<String> CollegeNotiList = new ArrayList<String>();
+public class SchoolNotiCrawer {
+	private final String SchoolNotiUrl = "https://zh.jnu.edu.cn/8378/list.psp";
+	private final String SchoolNotiDetailUrlHead = "https://zh.jnu.edu.cn";
+	public static ArrayList<String> SchoolNotiList = new ArrayList<String>();
 	public static ArrayList<String> linkList = new ArrayList<String>();
 	public static ArrayList<String> dateList = new ArrayList<String>();
 	public static ArrayList<String> contentlist = new ArrayList<String>();
 	private Document doc = null;
 	
-	public CollegeNotiCrawer() {
+	public SchoolNotiCrawer() {
 		try {
-			doc = Jsoup.connect(CollegeNotiUrl).timeout(8000).get();
+			doc = Jsoup.connect(SchoolNotiUrl).timeout(8000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -27,22 +27,23 @@ public class CollegeNotiCrawer {
 	
 	
 	
-	public void getCollegeNoti(){
-		
-		Elements elements1 = doc.getElementsByClass("news_list list2");
-		Elements CollegeNotiElements = elements1.select("li");
-		//CollegeNotiElements.remove(0);
-		for(int i=0;i<CollegeNotiElements.size();i++) {
-			
-			Element CollegeNotiElement = CollegeNotiElements.get(i);
-			Elements CollegeNotiElement2 = CollegeNotiElement.getElementsByClass("news_title");
-			Elements links = CollegeNotiElement2.get(0).getElementsByTag("a");
-			Elements CollegeNotiElement3 = CollegeNotiElement.getElementsByClass("news_meta");
-			String date = CollegeNotiElement3.get(0).text();
+public void getSchoolNoti(){
+		Elements elements1 = doc.getElementsByClass("media-list main-right-list list-announcement clearfix");
+		Elements SchoolNotiElements = elements1.select("li");
+		//SchoolNotiElements.remove(0);
+		for(int i=0;i<SchoolNotiElements.size();i++) {
+			Element SchoolNotiElement = SchoolNotiElements.get(i);
+			//Elements SchoolNotiElement2 = SchoolNotiElement.getElementsByClass("news_title");
+			Elements links = SchoolNotiElement.getElementsByTag("a");
+			Elements title = links.get(0).getElementsByClass("media-heading");
+			Elements SchoolNotiElement3 = SchoolNotiElement.getElementsByClass("media-left");
+			String date = SchoolNotiElement3.get(0).getElementsByTag("small").get(0).text() + "-" + SchoolNotiElement3.get(0).getElementsByTag("strong").get(0).text();
+			if(date.equals("2018-11-12")) 
+				continue;
 			String linkHref = links.get(0).attr("href");
-			String linkText = links.get(0).text();
-			String detailLink = CollegeNotiDetailUrlHead+linkHref;
-			CollegeNotiList.add(linkText);
+			String linkText = title.get(0).text();
+			String detailLink = SchoolNotiDetailUrlHead+linkHref;
+			SchoolNotiList.add(linkText);
 			linkList.add(detailLink);
 			dateList.add(date);
 			
@@ -76,18 +77,23 @@ public class CollegeNotiCrawer {
 		if(!currpage.get(0).text().equals("15")) {
 			Elements next = doc.getElementsByClass("next");
 			String linknext = next.get(0).attr("href");
-			String linkNectPage = CollegeNotiDetailUrlHead+linknext;
+			String linkNectPage = SchoolNotiDetailUrlHead+linknext;
 			try {
 				doc = Jsoup.connect(linkNectPage).timeout(8000).get();
 			} catch (IOException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-			getCollegeNoti();
+			getSchoolNoti();
 			
 		}
 		
 	
 	}
+	
+//	public static void main(String[] args) {
+//		SchoolNotiCrawer sCrawer = new SchoolNotiCrawer();
+//		sCrawer.getSchoolNoti();
+//	}
 	
 }
