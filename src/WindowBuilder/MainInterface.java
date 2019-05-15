@@ -82,11 +82,15 @@ public class MainInterface {
 			new NewsInfoCreate().start();
 			new CollegeInfoCreate().start();
 			new WorkInfoCreate().start();
+			new SchoolInfoCreate().start();
+			new DeptInfoCreate().start();
 		} catch (Exception e) {
 			// TODO: handle exception
 			new NewsInfoCreate().start();
 			new CollegeInfoCreate().start();
 			new WorkInfoCreate().start();
+			new SchoolInfoCreate().start();
+			new DeptInfoCreate().start();
 		}
 		
 		frame.setVisible(true);  
