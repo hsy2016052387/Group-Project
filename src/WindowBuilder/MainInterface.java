@@ -306,6 +306,11 @@ public class MainInterface {
 			public void mousePressed(MouseEvent arg0) {
 				logClass.printlog("点击了查询成绩");
 				panel.removeAll();
+				//获取成绩,如果用户成绩不为空则不从网上拉取。
+				Login.user.loadScores();
+				if(Login.user.GetScores()==null)
+					Login.l.GetScoreTable();
+				//System.out.println(Login.user.GetScores().get(0).getCourse());
 				panel.add(new SeekGrade());
 				panel.updateUI();
 			}

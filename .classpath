@@ -2,11 +2,36 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="jsoup-1.11.3.jar"/>
-	<classpathentry kind="lib" path="miglayout15-swing.jar"/>
-	<classpathentry kind="lib" path="djnativeswing-swt.jar"/>
-	<classpathentry kind="lib" path="djnativeswing.jar"/>
-	<classpathentry kind="lib" path="org.eclipse.swt.win32.win32.x86_64-4.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/commons-lang3-3.9.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/commons-net-3.6.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/commons-text-1.6.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/djnativeswing.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/djnativeswing-swt.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/htmlunit-2.35.0.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/htmlunit-core-js-2.35.0.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/htmlunit-cssparser-1.4.0.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/httpclient-4.5.8.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/httpcore-4.4.11.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/httpmime-4.5.8.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/jetty-client-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/jetty-http-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/jetty-io-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/jetty-util-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/jetty-xml-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/neko-htmlunit-2.35.0.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/org.eclipse.swt.win32.win32.x86_64-4.3.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/serializer-2.7.2.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/websocket-api-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/websocket-client-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/websocket-common-9.4.16.v20190411.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/xalan-2.7.2.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/xercesImpl-2.12.0.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse/eclipse-workspace/Group-Project1/lib/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
