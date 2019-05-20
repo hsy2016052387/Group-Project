@@ -70,10 +70,10 @@ public class LeaveOutput
 		 
 
 
-	        dataMap.put("number", Request.leave_number);  
-	        dataMap.put("name", Request.leave_name);
-	        dataMap.put("reason",Request.leave_reason);      
-	        dataMap.put("institute",Request.leave_reason);   
-	        dataMap.put("specialty",Request.leave_specialty);   
+	        dataMap.put("number", LeaveRequest.leave_number);  
+	        dataMap.put("name", LeaveRequest.leave_name);
+	        dataMap.put("reason",LeaveRequest.leave_reason);      
+	        dataMap.put("institute",LeaveRequest.leave_reason);   
+	        dataMap.put("specialty",LeaveRequest.leave_specialty);   
 	    }
 }

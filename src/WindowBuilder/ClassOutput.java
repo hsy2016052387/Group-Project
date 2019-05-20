@@ -35,7 +35,8 @@ public class ClassOutput
 	 public void createWord() throws IOException{  
 	        Map<String,Object> dataMap=new HashMap<String,Object>();  
 	        getData(dataMap);  
-	        configuration.setClassForTemplateLoading(this.getClass(), "/WindowBuilder");  //FTL文件所在位置
+	        String path = System.getProperty("user.dir")+"./src/WindowBuilder";//FTL文件所在位置
+	        configuration.setDirectoryForTemplateLoading(new File(path));
 	        Template t=null;  
 	        try {  
 	            t = configuration.getTemplate("Class.ftl","UTF-8"); //FTL文件名称
@@ -68,12 +69,12 @@ public class ClassOutput
 //	        dataMap.put("phone", "x");
 //	        dataMap.put("purpose", "x");
 
-	        dataMap.put("num1", Request.class_num1);  
-	        dataMap.put("num2",  Request.class_num2);
-	        dataMap.put("num3", Request.class_num3);      
-	        dataMap.put("Intended", Request.class_intended);   
-	        dataMap.put("name", Request.class_name);   
-	        dataMap.put("phone", Request.class_phone);
-	        dataMap.put("purpose", Request.class_purpose);
+	        dataMap.put("num1", ClassRequest.class_num1);  
+	        dataMap.put("num2",  ClassRequest.class_num2);
+	        dataMap.put("num3", ClassRequest.class_num3);      
+	        dataMap.put("Intended", ClassRequest.class_intended);   
+	        dataMap.put("name", ClassRequest.class_name);   
+	        dataMap.put("phone", ClassRequest.class_phone);
+	        dataMap.put("purpose", ClassRequest.class_purpose);
 	    }
 }
