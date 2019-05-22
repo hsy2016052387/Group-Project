@@ -5,9 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import WindowBuilder.*;
-import ClassLibrary.CollegeNotiCrawer;
-import ClassLibrary.NewsCrawer;
+import ClassLibrary.*;
 
 public class NewsTest {
 
