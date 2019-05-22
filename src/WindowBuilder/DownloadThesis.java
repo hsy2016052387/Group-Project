@@ -77,7 +77,7 @@ public class DownloadThesis {
 		JLabel label = new JLabel("\u6A21\u677F\u7C7B\u578B\uFF1A");
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"课程论文模板","PPT模板","实验报告模板"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\u8bfe\u7a0b\u8bba\u6587\u6a21\u677f","\u8bf7\u5047\u6761\u6a21\u677f","\u5b9e\u9a8c\u62a5\u544a\u6a21\u677f"}));
 		
 		JLabel lblNewLabel = new JLabel("\u6587\u4EF6\u547D\u540D\uFF1A");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

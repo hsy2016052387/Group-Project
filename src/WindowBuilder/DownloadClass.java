@@ -77,7 +77,7 @@ public class DownloadClass {
 		JLabel label = new JLabel("\u6A21\u677F\u7C7B\u578B\uFF1A");
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"øŒ “…Í«Îƒ£∞Â","\u8BF7\u5047\u6A21\u677F", "\u5B9E\u9A8C\u62A5\u544A\u6A21\u677F", "\u8BFE\u7A0B\u8BBA\u6587\u6A21\u677F"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\u8bfe\u5ba4\u7533\u8bf7\u6a21\u677f","\u8BF7\u5047\u6A21\u677F", "\u5B9E\u9A8C\u62A5\u544A\u6A21\u677F", "\u8BFE\u7A0B\u8BBA\u6587\u6A21\u677F"}));
 		
 		JLabel lblNewLabel = new JLabel("\u6587\u4EF6\u547D\u540D\uFF1A");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
