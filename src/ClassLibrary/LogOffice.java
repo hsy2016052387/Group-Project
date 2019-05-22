@@ -115,12 +115,21 @@ public class LogOffice {
 		}
     }
     
-    public void GetTrainPlan() {
+    //从教务处上获取个人信息
+    public void GetUserInfo() {
     	try {
-			HtmlPage page=client.getPage("https://jwxt.jnu.edu.cn/default.aspx");
-			//page.
-			//MainInterface.panel.add(new BrowserPanel(page.getBaseURI()));
-			//MainInterface.panel.updateUI();
+			HtmlPage page=client.getPage("https://jwxt.jnu.edu.cn/Secure/Xjgl/Xjgl_Xsxxgl_Xjxxxg_XS.aspx");
+			Document document = Jsoup.parse(page.asXml());
+			Elements elements1 = document.select("#TableJB1");
+			
+			Elements inputs = elements1.select("input");
+			
+			MainInterface.userInfo.setStudentID(inputs.get(3).attr("value"));
+			MainInterface.userInfo.setCollege(inputs.get(4).attr("value"));
+			MainInterface.userInfo.setName(inputs.get(6).attr("value"));
+			MainInterface.userInfo.setMajor(inputs.get(10).attr("value"));
+			//System.out.print(inputs.get(3).attr("value")+inputs.get(4).attr("value")+inputs.get(6).attr("value")+inputs.get(10).attr("value"));
+			
 		} catch (FailingHttpStatusCodeException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -131,5 +140,26 @@ public class LogOffice {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
+    }
+    
+    public Elements GetTrainPlan() {
+    	try {
+			HtmlPage page=client.getPage("https://jwxt.jnu.edu.cn/default.aspx");
+			String pageXml=page.asXml();
+			//System.out.println(pageXml);
+			Document document=Jsoup.parse(pageXml);
+			Elements elements=document.select(".yaoqiu").select("table").select("tbody");
+			return elements.select("tr");
+		} catch (FailingHttpStatusCodeException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+    	return new Elements();
 	}
 }

@@ -58,7 +58,7 @@ public class User  {
 	}
 	
 	public void loadScores() {
-		SaveData saveData=new SaveData();
+		SaveData saveData=new SaveData("../data/score/"+Login.user.GetAccount()+".txt");
 		scores=saveData.load();
 	}
 }

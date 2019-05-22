@@ -50,6 +50,11 @@ import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 public class MainInterface {
 	static JPanel panel = new JPanel();
 	static logClass logClass = new logClass();
+	public static UserInfo userInfo = new UserInfo();
+	public static PasswordInfo passwordInfo;
+	public static Dorm dorm;
+	public static SaveData saveDataPasswor;
+	public static SaveData saveDataDorm;
 	private JFrame frame;
 	
 
@@ -76,14 +81,15 @@ public class MainInterface {
 	 * Create the application.
 	 */
 	public MainInterface() {
+		Login.l.GetUserInfo();
 		
-		initialize();
 		try {
 			new NewsInfoCreate().start();
 			new CollegeInfoCreate().start();
 			new WorkInfoCreate().start();
 			new SchoolInfoCreate().start();
 			new DeptInfoCreate().start();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			new NewsInfoCreate().start();
@@ -92,17 +98,27 @@ public class MainInterface {
 			new SchoolInfoCreate().start();
 			new DeptInfoCreate().start();
 		}
+		while (NewsCrawer.NewsList.size() < 3 || WorkInfoCrawer.workInfoList.size()<3) {
+			Thread.currentThread().yield();
+		}
 		
+		
+		initialize();
 		frame.setVisible(true);  
-		//test
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		JPanel mainInterface = new JPanel();
+		saveDataPasswor = new SaveData("../data/password/"+Login.user.GetAccount()+"passwrod.txt");
+		passwordInfo = saveDataPasswor.loadPasswordInfo();
 		
+		saveDataDorm = new SaveData("../data/dorm/"+Login.user.GetAccount()+"dorm.txt");
+		dorm = saveDataDorm.loadDorm();
+		
+		JPanel mainInterface = new JPanel();
 		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
@@ -143,25 +159,21 @@ public class MainInterface {
 		lblNewLabel.setBounds(661, 57, 113, 40);
 		mainInterface.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u519C\u884C\u5E7F\u4E1C\u7701\u5206\u884C2019\u6625\u5B63\u6821\u56ED\u62DB\u8058\u516C\u544A");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				panel.removeAll();
-				panel.add(new WorkDetail());
-				panel.updateUI();
-			}
-		});
+		JLabel lblNewLabel_1 = new JLabel();
+		lblNewLabel_1.setText(WorkInfoCrawer.workInfoList.get(0));
+		
 		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 17));
 		lblNewLabel_1.setBounds(29, 151, 424, 30);
 		mainInterface.add(lblNewLabel_1);
 		
-		JLabel label_1 = new JLabel("\u65F6\u4EE3\u4E2D\u56FD2019\u6625\u5B63\u6821\u56ED\u62DB\u8058\u516C\u544A");
+		JLabel label_1 = new JLabel();
+		label_1.setText(WorkInfoCrawer.workInfoList.get(1));
 		label_1.setFont(new Font("宋体", Font.PLAIN, 17));
 		label_1.setBounds(29, 221, 424, 30);
 		mainInterface.add(label_1);
 		
-		JLabel lblyoung = new JLabel("\u5E7F\u53D1\u53612019\u6625\u5B63\u6821\u56ED\u2014\u2014\u4E0D\u4E00young\u7684\u7CBE\u5F69");
+		JLabel lblyoung = new JLabel();
+		lblyoung.setText(WorkInfoCrawer.workInfoList.get(2));
 		lblyoung.setFont(new Font("宋体", Font.PLAIN, 17));
 		lblyoung.setBounds(29, 302, 424, 30);
 		mainInterface.add(lblyoung);
@@ -170,7 +182,7 @@ public class MainInterface {
 		label_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				logClass.printlog("点击了更多就业信息");
+				logClass.printlog("点击了更多（就业信息）");
 				panel.removeAll();
 				panel.add(new WorkInfo());
 				panel.updateUI();
@@ -180,20 +192,37 @@ public class MainInterface {
 		label_3.setBounds(329, 375, 72, 18);
 		mainInterface.add(label_3);
 		
-		JLabel label_4 = new JLabel("\u6211\u6821\u83B7\u62795\u9879\u56FD\u5BB6\u865A\u62DF\u4EFF\u771F\u5B9E\u9A8C\u6559\u5B66\u9879\u76EE");
+		JLabel label_4 = new JLabel();
+		label_4.setText(NewsCrawer.NewsList.get(0));
 		label_4.setFont(new Font("宋体", Font.PLAIN, 17));
 		label_4.setBounds(544, 151, 424, 30);
 		mainInterface.add(label_4);
 		
-		JLabel label_5 = new JLabel("\u3010\u8FC8\u5411\u9AD8\u6C34\u5E73\u3011\u6211\u682111\u9879\u6210\u679C\u83B7\u5E7F\u4E1C\u7701\u79D1\u5B66\u6280\u672F\u5956");
+		JLabel label_5 = new JLabel();
+		label_5.setText(NewsCrawer.NewsList.get(1));
 		label_5.setFont(new Font("宋体", Font.PLAIN, 17));
 		label_5.setBounds(544, 221, 424, 30);
 		mainInterface.add(label_5);
 		
 		JLabel label_7 = new JLabel("\u66F4\u591A");
+		label_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				logClass.printlog("点击了更多（校园新闻）");
+				panel.removeAll();
+				panel.add(new News());
+				panel.updateUI();
+			}
+		});
 		label_7.setForeground(new Color(100, 149, 237));
 		label_7.setBounds(856, 375, 72, 18);
 		mainInterface.add(label_7);
+		
+		JLabel label_6 = new JLabel();
+		label_6.setText(NewsCrawer.NewsList.get(2));
+		label_6.setFont(new Font("宋体", Font.PLAIN, 17));
+		label_6.setBounds(544, 302, 424, 30);
+		mainInterface.add(label_6);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
@@ -251,20 +280,41 @@ public class MainInterface {
 		mntmNewMenuItem_2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\u7535\u8D39\u996D\u5361\u4F59\u989D");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("\u7535\u8D39\u4F59\u989D");
 		mntmNewMenuItem_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				
-				logClass.printlog("点击了电费饭卡余额");
+				logClass.printlog("点击了电费余额");
 				
 				panel.removeAll();
-				panel.add(new Balance());
+				if(dorm==null || dorm.getDormID().length()!=4)
+					panel.add(new Balance(null));
+				else
+					panel.add(new Balance(dorm.getDormID()));
 				panel.updateUI();
 			}
 		});
 		mntmNewMenuItem_3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
 		mnNewMenu.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("\u6821\u56ed\u5361\u4f59\u989d");
+		mntmNewMenuItem_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				panel.removeAll();
+				if(passwordInfo==null ||  passwordInfo.getShuziJnuAccount().length()==0 || passwordInfo.getShuziJnuPassword().length()==0)
+					panel.add(new SchoolCard(null));
+				else {
+					SchoolCardMoneyCrawer schoolCardMoneyCrawer =  new SchoolCardMoneyCrawer();
+					String status  = schoolCardMoneyCrawer.getBalance(passwordInfo.getShuziJnuAccount(), passwordInfo.getShuziJnuPassword());
+					panel.add(new SchoolCard(status));
+				}
+				panel.updateUI();
+			}
+		});
+		mntmNewMenuItem_7.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+		mnNewMenu.add(mntmNewMenuItem_7);
 		
 		JMenu mnNewMenu_1 = new JMenu("\u6587\u6863");
 		mnNewMenu_1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 20));
@@ -324,7 +374,7 @@ public class MainInterface {
 			public void mousePressed(MouseEvent arg0) {
 				logClass.printlog("点击了查询培养方案");
 				panel.removeAll();
-				panel.add(new SeekTrainPlan());
+				panel.add(new SeekTrainPlan(Login.l.GetTrainPlan()));
 				panel.updateUI();
 			}
 		});
@@ -367,9 +417,10 @@ public class MainInterface {
 		button_1.setBounds(219, 1, 113, 30);
 		panel_3.add(button_1);
 		
-		JLabel label_2 = new JLabel("\u9EC4\u9882\u626C");
+		JLabel label_2 = new JLabel();
 		label_2.setFont(new Font("宋体", Font.PLAIN, 17));
 		label_2.setBounds(555, 0, 72, 27);
+		label_2.setText(userInfo.getName());
 		panel_3.add(label_2);
 		
 		JComboBox comboBox = new JComboBox();
@@ -408,5 +459,10 @@ public class MainInterface {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "\u4E2A\u4EBA\u4FE1\u606F\u8BBE\u7F6E", "\u8D26\u53F7\u5BC6\u7801\u7BA1\u7406", "\u9000\u51FA\u767B\u5F55"}));
 		comboBox.setBounds(614, 1, 119, 24);
 		panel_3.add(comboBox);
+		
+		
+		
+			
+			
 	}
 }

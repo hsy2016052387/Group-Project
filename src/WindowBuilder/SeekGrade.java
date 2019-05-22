@@ -96,12 +96,16 @@ public class SeekGrade extends JPanel {
 		SeekGrade_panel.add(lblNewLabel_4);
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//先从网站上更新user成绩再序列化保存成绩
 				Login.l.GetScoreTable();
-				SaveData saveData=new SaveData();
+				SaveData saveData=new SaveData("../data/score/"+Login.user.GetAccount()+".txt");
 				saveData.save(Login.user.GetScores());
 			}
 		});

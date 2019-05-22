@@ -51,7 +51,6 @@ public class WorkInfo extends JPanel {
 			public void mousePressed(MouseEvent arg0) {
 				MainInterface.panel.removeAll();
 				MainInterface.panel.add(new BrowserPanel(WorkInfoCrawer.linkList.get(page*5)));
-				
 				MainInterface.panel.updateUI();
 			}
 		});
@@ -68,6 +67,14 @@ public class WorkInfo extends JPanel {
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel();
+		label_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				MainInterface.panel.removeAll();
+				MainInterface.panel.add(new BrowserPanel(WorkInfoCrawer.linkList.get(page*5+1)));
+				MainInterface.panel.updateUI();
+			}
+		});
 		label_3.setFont(new Font("宋体", Font.PLAIN, 18));
 		label_3.setBounds(133, 191, 558, 37);
 		label_3.setText(WorkInfoCrawer.workInfoList.get(1));
@@ -81,6 +88,14 @@ public class WorkInfo extends JPanel {
 		panel.add(label_4);
 		
 		JLabel label_5 = new JLabel();
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainInterface.panel.removeAll();
+				MainInterface.panel.add(new BrowserPanel(WorkInfoCrawer.linkList.get(page*5+2)));
+				MainInterface.panel.updateUI();
+			}
+		});
 		label_5.setFont(new Font("宋体", Font.PLAIN, 18));
 		label_5.setBounds(133, 241, 558, 37);
 		label_5.setText(WorkInfoCrawer.workInfoList.get(2));
@@ -94,12 +109,28 @@ public class WorkInfo extends JPanel {
 		panel.add(label_6);
 		
 		JLabel label_7 = new JLabel();
+		label_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainInterface.panel.removeAll();
+				MainInterface.panel.add(new BrowserPanel(WorkInfoCrawer.linkList.get(page*5+3)));
+				MainInterface.panel.updateUI();
+			}
+		});
 		label_7.setFont(new Font("宋体", Font.PLAIN, 18));
 		label_7.setBounds(133, 291, 558, 37);
 		label_7.setText(WorkInfoCrawer.workInfoList.get(3));
 		panel.add(label_7);
 		
 		JLabel label_8 = new JLabel();
+		label_8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				MainInterface.panel.removeAll();
+				MainInterface.panel.add(new BrowserPanel(WorkInfoCrawer.linkList.get(page*5+4)));
+				MainInterface.panel.updateUI();
+			}
+		});
 		label_8.setFont(new Font("宋体", Font.PLAIN, 18));
 		label_8.setBounds(133, 341, 558, 37);
 		label_8.setText(WorkInfoCrawer.workInfoList.get(4));

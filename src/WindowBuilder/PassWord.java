@@ -14,6 +14,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import ClassLibrary.PasswordInfo;
+import ClassLibrary.SaveData;
+
 public class PassWord extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -21,6 +24,8 @@ public class PassWord extends JPanel {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+//	private PasswordInfo passwordInfo;
+//	private SaveData saveData;
 
 	/**
 	 * Create the panel.
@@ -29,6 +34,9 @@ public class PassWord extends JPanel {
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(0, 0, 982, 524);
 		setLayout(null);
+		
+//		saveData = new SaveData("../data/password/"+Login.user.GetAccount()+"passwrod.txt");
+//		passwordInfo = saveData.loadPasswordInfo();
 		
 		JPanel user_password = new JPanel();
 		user_password.setBackground(Color.WHITE);
@@ -70,14 +78,20 @@ public class PassWord extends JPanel {
 		textField_1 = new JTextField();
 		textField_1.setBounds(191, 92, 308, 24);
 		textField_1.setEditable(false);
+		if(MainInterface.passwordInfo!=null)
+			textField_1.setText(MainInterface.passwordInfo.getStudyJnuAccount());
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
+		
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(191, 142, 308, 24);
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
+		if(MainInterface.passwordInfo!=null)
+			textField_2.setText(MainInterface.passwordInfo.getStudyJnuPassword());
 		panel_1.add(textField_2);
+		
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(88, 192, 532, 2);
@@ -102,12 +116,16 @@ public class PassWord extends JPanel {
 		textField_3.setBounds(191, 269, 308, 24);
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);
+		if(MainInterface.passwordInfo!=null)
+			textField_3.setText(MainInterface.passwordInfo.getShuziJnuAccount());
 		panel_1.add(textField_3);
 		
 		textField_4 = new JTextField();
 		textField_4.setBounds(191, 317, 308, 24);
 		textField_4.setEditable(false);
 		textField_4.setColumns(10);
+		if(MainInterface.passwordInfo!=null)
+			textField_4.setText(MainInterface.passwordInfo.getShuziJnuPassword());
 		panel_1.add(textField_4);
 		
 		JSeparator separator_4 = new JSeparator();
@@ -133,23 +151,40 @@ public class PassWord extends JPanel {
 		textField_5.setEditable(false);
 		textField_5.setColumns(10);
 		textField_5.setBounds(191, 448, 308, 24);
+		if(MainInterface.passwordInfo!=null)
+			textField_5.setText(MainInterface.passwordInfo.getSchoolCardAccount());
 		panel_1.add(textField_5);
 		
 		textField_6 = new JTextField();
 		textField_6.setEditable(false);
 		textField_6.setColumns(10);
 		textField_6.setBounds(191, 494, 308, 24);
+		if(MainInterface.passwordInfo!=null)
+			textField_6.setText(MainInterface.passwordInfo.getSchoolCardPassword());
 		panel_1.add(textField_6);
 		
 		JButton btnNewButton_2 = new JButton("\u4fdd\u5b58");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				textField_1.setEditable(false);
-				textField_2.setEditable(false);
-				textField_3.setEditable(false);
-				textField_4.setEditable(false);
-				textField_5.setEditable(false);
-				textField_6.setEditable(false);
+				MainInterface.logClass.printlog("点击了保存");
+				if(textField_1.isEditable()) {
+					textField_1.setEditable(false);
+					textField_2.setEditable(false);
+					textField_3.setEditable(false);
+					textField_4.setEditable(false);
+					textField_5.setEditable(false);
+					textField_6.setEditable(false);
+					if(MainInterface.passwordInfo==null)
+						MainInterface.passwordInfo = new PasswordInfo();
+					MainInterface.passwordInfo.setStudyJnuAccount(textField_1.getText());
+					MainInterface.passwordInfo.setStudyJnuPassword(textField_2.getText());
+					MainInterface.passwordInfo.setShuziJnuAccount(textField_3.getText());
+					MainInterface.passwordInfo.setShuziJnuPassword(textField_4.getText());
+					MainInterface.passwordInfo.setSchoolCardAccount(textField_5.getText());
+					MainInterface.passwordInfo.setSchoolCardPassword(textField_6.getText());
+					
+					MainInterface.saveDataPasswor.save(MainInterface.passwordInfo);
+				}
 			}
 		});
 		btnNewButton_2.setBounds(542, 484, 113, 27);
@@ -158,6 +193,7 @@ public class PassWord extends JPanel {
 		JButton button = new JButton("\u7f16\u8f91");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainInterface.logClass.printlog("点击了编辑");
 				textField_1.setEditable(true);
 				textField_2.setEditable(true);
 				textField_3.setEditable(true);

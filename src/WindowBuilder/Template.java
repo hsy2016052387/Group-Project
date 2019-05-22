@@ -2,16 +2,50 @@ package WindowBuilder;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import ClassLibrary.*;
 
 public class Template extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
+	public static void changeFrame(DownloadReport windows) {
+		//frame.setEnabled(false);
+		windows.frame_1.setVisible(true);
+		windows.frame_1.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		windows.frame_1.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+			//	frame.setEnabled(true);
+			}
+		});
+	}
+	public static void changeFrame(DownloadLeave windows) {
+		//frame.setEnabled(false);
+		windows.frame_1.setVisible(true);
+		windows.frame_1.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		windows.frame_1.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+			//	frame.setEnabled(true);
+			}
+		});
+	}
+	public static void changeFrame(DownloadThesis windows) {
+		//frame.setEnabled(false);
+		windows.frame_1.setVisible(true);
+		windows.frame_1.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		windows.frame_1.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+			//	frame.setEnabled(true);
+			}
+		});
+	}
 	public Template() {
 		setBackground(Color.LIGHT_GRAY);
 		setBounds(0, 0, 982, 524);
@@ -33,15 +67,17 @@ public class Template extends JPanel {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				changeFrame(new DownloadThesis());
 			}
 		});
 		button.setBounds(396, 153, 150, 62);
 		panel_1.add(button);
 		
-		JButton button_1 = new JButton("PPT\u6A21\u677F");
+		JButton button_1 = new JButton("\u8bf7\u5047\u6761\u6A21\u677F");
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				changeFrame(new DownloadLeave());
 			}
 		});
 		button_1.setBounds(396, 215, 150, 54);
@@ -51,6 +87,7 @@ public class Template extends JPanel {
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				changeFrame(new DownloadReport());
 			}
 		});
 		button_2.setBounds(396, 269, 150, 54);
