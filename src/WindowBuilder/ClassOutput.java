@@ -43,7 +43,7 @@ public class ClassOutput
 	        } catch (IOException e) {  
 	            e.printStackTrace();  
 	        }  
-	        File outFile = new File("./课室申请.docx");  //输出文件名称
+	        File outFile = new File("./课室申请.doc");  //输出文件名称
 	        Writer out = null;  
 	        try {  
 	            out =new OutputStreamWriter(new FileOutputStream(outFile),"UTF-8");  

@@ -44,7 +44,7 @@ public class LeaveOutput
 	        } catch (IOException e) {  
 	            e.printStackTrace();  
 	        }  
-	        File outFile = new File("./请假条.docx");  //输出文件名称
+	        File outFile = new File("./请假条.doc");  //输出文件名称
 	        Writer out = null;  
 	        try {  
 	            out = new OutputStreamWriter(new FileOutputStream(outFile),"UTF-8");  

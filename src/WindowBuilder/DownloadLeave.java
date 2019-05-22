@@ -84,7 +84,7 @@ public class DownloadLeave {
 		
 		textField = new JTextField();
 		textField.setColumns(15);
-		textField.setText("ว๋ผูฬ๕.docx");
+		textField.setText("ว๋ผูฬ๕.doc");
 		destFileName = textField.getText();
 		
 		JLabel label_1 = new JLabel("\u4FDD\u5B58\u4F4D\u7F6E\uFF1A");
@@ -97,7 +97,7 @@ public class DownloadLeave {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO
-				File source = new File("./ว๋ผูฬ๕.docx");
+				File source = new File("./ว๋ผูฬ๕.doc");
 				File dest = new File(destPath+destFileName);
 				try {
 					copyFile(source, dest);
