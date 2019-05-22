@@ -72,10 +72,10 @@ public class CollegeNotiCrawer {
 			
 		}
 		Elements currpage = doc.getElementsByClass("curr_page");
-		Elements allpages = doc.getElementsByClass("all_pages");
-		if(!currpage.get(0).text().equals("15")) {
-			Elements next = doc.getElementsByClass("next");
-			String linknext = next.get(0).attr("href");
+		//Elements allpages = doc.getElementsByClass("all_pages");
+		Elements next = doc.getElementsByClass("next");
+		String linknext = next.get(0).attr("href");
+		if(!currpage.get(0).text().equals("15")) {		
 			String linkNectPage = CollegeNotiDetailUrlHead+linknext;
 			try {
 				doc = Jsoup.connect(linkNectPage).timeout(8000).get();

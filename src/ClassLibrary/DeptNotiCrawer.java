@@ -54,13 +54,15 @@ public class DeptNotiCrawer {
 				e.printStackTrace();
 			};
 			Elements elements4 = doc.getElementsByClass("wp_articlecontent");
-			Elements conElements = elements4.get(0).getElementsByTag("p");
-			//System.out.println(conElements.size());
 			StringBuffer contxt = new StringBuffer();
-			for(int j=0;j<conElements.size();j++) {
-				Element cont = conElements.get(j);
-				contxt.append(cont.text().trim());
-				contxt.append("\n");
+			if (elements4.size() > 0) {
+				Elements conElements = elements4.get(0).getElementsByTag("p");
+				
+				for(int j=0;j<conElements.size();j++) {
+					Element cont = conElements.get(j);
+					contxt.append(cont.text().trim());
+					contxt.append("\n");
+				}
 			}
 			contentlist.add(contxt.toString());
 			//System.out.println(contxt);

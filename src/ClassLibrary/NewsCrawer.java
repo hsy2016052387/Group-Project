@@ -91,9 +91,9 @@ public class NewsCrawer {
 	
 	}
 	
-	public static void main(String[] args) {
-		NewsCrawer newsCrawer = new NewsCrawer();
-		newsCrawer.getNews();
-	}
+//	public static void main(String[] args) {
+//		NewsCrawer newsCrawer = new NewsCrawer();
+//		newsCrawer.getNews();
+//	}
 	
 }
