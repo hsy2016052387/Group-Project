@@ -38,15 +38,15 @@ public class LeaveOutput
 	 public void createWord() throws IOException {  
 	        Map<String,Object> dataMap=new HashMap<String,Object>();  
 	        getData(dataMap); 
-	        String path = System.getProperty("user.dir")+"./ftl";//FTL文件所在位置
+	        String path = System.getProperty("user.dir")+"./ftl";
 	        configuration.setDirectoryForTemplateLoading(new File(path));
 	        Template t=null;
 	        try {  
-	            t = configuration.getTemplate("leave.ftl","UTF-8");    //FTL文件名称
+	            t = configuration.getTemplate("leave.ftl","UTF-8");   
 	        } catch (IOException e) {  
 	            e.printStackTrace();  
 	        }  
-	        File outFile = new File("./\u8bf7\u5047\u6761.doc");  //输出文件名称
+	        File outFile = new File("./\u8bf7\u5047\u6761.doc"); 
 	        Writer out = null;  
 	        try {  
 	            out = new OutputStreamWriter(new FileOutputStream(outFile),"UTF-8");  
@@ -75,7 +75,7 @@ public class LeaveOutput
 	        dataMap.put("number", LeaveRequest.leave_number);  
 	        dataMap.put("name", LeaveRequest.leave_name);
 	        dataMap.put("reason",LeaveRequest.leave_reason);      
-	        dataMap.put("institute",LeaveRequest.leave_reason);   
+	        dataMap.put("institute",LeaveRequest.leave_institute);   
 	        dataMap.put("specialty",LeaveRequest.leave_specialty);   
 	    }
 }

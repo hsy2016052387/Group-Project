@@ -29,9 +29,16 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import ClassLibrary.Dorm;
+
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Balance extends JPanel {
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -49,28 +56,65 @@ public class Balance extends JPanel {
 		
 		JLabel label = new JLabel("\u5BBF\u820D\u7535\u8D39");
 		label.setFont(new Font("����", Font.PLAIN, 24));
-		label.setBounds(347, 86, 133, 26);
+		label.setBounds(225, 92, 133, 26);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("\u5F53\u524D\u5269\u4F59\uFF1A");
 		label_1.setFont(new Font("����", Font.PLAIN, 18));
-		label_1.setBounds(282, 174, 116, 18);
+		label_1.setBounds(160, 180, 116, 18);
 		panel.add(label_1);
 		
 		JLabel label_7 = new JLabel();
 		
 		label_7.setFont(new Font("����", Font.PLAIN, 18));
-		label_7.setBounds(408, 202, 471, 18);
+		label_7.setBounds(286, 208, 471, 18);
 		
 		panel.add(label_7);
 		
 		JLabel label_2 = new JLabel();
 		label_2.setFont(new Font("����", Font.PLAIN, 18));
-		label_2.setBounds(408, 174, 252, 18);
+		label_2.setBounds(286, 180, 252, 18);
 		panel.add(label_2);
 		if(dormNum==null) {
-			label_7.setText("\u5bbf\u820d\u53f7\u4e0d\u5b58\u5728\uff0c\u8bf7\u5728\u4e2a\u4eba\u4fe1\u606f\u4e2d\u6b63\u786e\u586b\u5199");
+			label_7.setText("\u5bbf\u820d\u53f7\u4e0d\u5b58\u5728\uff0c\u8bf7\u5728\u8f93\u5165\u6846\u4e2d\u586b\u5199");
 			label_7.setForeground(Color.RED);
+			
+			JLabel label_3 = new JLabel("\u5bbf\u820d\u53f7\uff1a");
+			label_3.setHorizontalAlignment(SwingConstants.LEFT);
+			label_3.setFont(new Font("Dialog", Font.PLAIN, 18));
+			label_3.setBounds(160, 408, 91, 18);
+			panel.add(label_3);
+			
+			textField = new JTextField();
+			textField.setBounds(272, 406, 86, 24);
+			panel.add(textField);
+			textField.setColumns(10);
+			
+			JButton btnNewButton = new JButton("\u4fdd\u5b58\u5e76\u67e5\u8be2");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					MainInterface.logClass.printlog("点击了保存并查询");
+					if(MainInterface.dorm==null)
+						MainInterface.dorm = new Dorm();
+					MainInterface.dorm.setDormID(textField.getText());
+					MainInterface.saveDataDorm.save(MainInterface.dorm);
+					if(textField.getText().length()==4) {
+						label_7.setText(textField.getText());
+						label_7.setForeground(Color.BLACK);
+						String res = getele(textField.getText());
+						if(res.equals("false"))
+							label_2.setText("\u67e5\u8be2\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u7f51\u7edc");
+						else
+							label_2.setText(res+"\uff08\u5ea6\uff09");
+					}else {
+						label_2.setText("");
+						label_7.setText("\u8f93\u5165\u7684\u5bbf\u820d\u53f7\u4e0d\u5b58\u5728\uff0c\u8bf7\u91cd\u65b0\u8f93\u5165");
+						label_7.setForeground(Color.RED);
+					}
+				}
+			});
+			btnNewButton.setBounds(393, 405, 113, 27);
+			panel.add(btnNewButton);
 		}else {
 			label_7.setText(dormNum);
 			String res = getele(dormNum);
@@ -84,35 +128,35 @@ public class Balance extends JPanel {
 		JLabel label_6 = new JLabel("\u63cf\u8ff0\uff1a");
 		label_6.setHorizontalAlignment(SwingConstants.LEFT);
 		label_6.setFont(new Font("����", Font.PLAIN, 18));
-		label_6.setBounds(282, 202, 126, 18);
+		label_6.setBounds(160, 208, 126, 18);
 		panel.add(label_6);
 		
 		
 		
 		JLabel label_8 = new JLabel("\u5355\u4EF7\u7C7B\u578B\uFF1A    \u5B66\u751F\u7528\u7535[0.63\u5143]");
 		label_8.setFont(new Font("����", Font.PLAIN, 18));
-		label_8.setBounds(282, 233, 343, 18);
+		label_8.setBounds(160, 239, 343, 18);
 		panel.add(label_8);
 		
 		JLabel label_9 = new JLabel("\u6700\u5927\u8D1F\u8377\uFF1A    5A");
 		label_9.setFont(new Font("����", Font.PLAIN, 18));
-		label_9.setBounds(282, 261, 273, 18);
+		label_9.setBounds(160, 267, 273, 18);
 		panel.add(label_9);
 		
 		JLabel label_11 = new JLabel("\u62A5\u8B66\u4E0B\u9650\uFF1A    20\u5EA6");
 		label_11.setFont(new Font("����", Font.PLAIN, 18));
-		label_11.setBounds(282, 295, 252, 26);
+		label_11.setBounds(160, 301, 252, 26);
 		panel.add(label_11);
 		
 		JLabel label_12 = new JLabel("\u900F\u89C6\u4E0B\u9650\uFF1A    159\u5EA6");
 		label_12.setFont(new Font("����", Font.PLAIN, 18));
-		label_12.setBounds(281, 328, 222, 18);
+		label_12.setBounds(159, 334, 222, 18);
 		panel.add(label_12);
 		
 		JLabel label_13 = new JLabel("\u66F4\u65B0\u65F6\u95F4\uFF1A");
 		label_13.setHorizontalAlignment(SwingConstants.LEFT);
 		label_13.setFont(new Font("����", Font.PLAIN, 18));
-		label_13.setBounds(282, 359, 91, 18);
+		label_13.setBounds(160, 365, 91, 18);
 		panel.add(label_13);
 		
 		JLabel label_14 = new JLabel();
@@ -125,8 +169,10 @@ public class Balance extends JPanel {
         int second = c.get(Calendar.SECOND); 
         label_14.setText(year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second);
 		label_14.setFont(new Font("����", Font.PLAIN, 18));
-		label_14.setBounds(397, 359, 197, 18);
+		label_14.setBounds(275, 365, 197, 18);
 		panel.add(label_14);
+		
+		
 
 	}
 	public String getele(String dormnum)
@@ -380,5 +426,4 @@ public class Balance extends JPanel {
         }
         return rest;
 	}
-
 }

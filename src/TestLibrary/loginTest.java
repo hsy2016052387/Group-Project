@@ -2,9 +2,12 @@ package TestLibrary;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import ClassLibrary.User;
 import WindowBuilder.Login;
 
 public class loginTest {
@@ -15,13 +18,12 @@ public class loginTest {
 	
 	@Test
 	public void testTrue_Account() {
+		//验证二维码图片有没有保存下来
 		Login log = new Login();
-		String s = new String("");
-		char[] a = {};
-		assertEquals(true,log.true_Account(s, a));
-		//while(true);
-		s = "2019";
-		assertEquals(false, log.true_Account(s, a));
+		String path = this.getClass().getClassLoader().getResource(".").getPath();
+		//btnNewButton_1.setIcon(new ImageIcon(path+"../images/download.png"));
+        File storeFile=new File(path+"../images/yzm.gif");
+        assertEquals(true, storeFile.exists());
 	}
 
 }

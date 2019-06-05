@@ -303,7 +303,7 @@ public class MainInterface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				panel.removeAll();
-				if(passwordInfo==null ||  passwordInfo.getShuziJnuAccount().length()==0 || passwordInfo.getShuziJnuPassword().length()==0)
+				if(passwordInfo==null ||  passwordInfo.getShuziJnuAccount().length()!=10 || passwordInfo.getShuziJnuPassword().length()==0)
 					panel.add(new SchoolCard(null));
 				else {
 					SchoolCardMoneyCrawer schoolCardMoneyCrawer =  new SchoolCardMoneyCrawer();

@@ -99,7 +99,6 @@ public class PersonInfo extends JPanel {
 		textField.setFont(new Font("Dialog", Font.PLAIN, 18));
 		textField.setColumns(10);
 		textField.setBounds(155, 404, 106, 27);
-		textField.setEditable(false);
 		if(MainInterface.dorm!=null)
 			textField.setText(MainInterface.dorm.getDormID());
 		panel.add(textField);
@@ -108,31 +107,18 @@ public class PersonInfo extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainInterface.logClass.printlog("点击了保存");
-				if(textField.isEditable()) {
-					textField.setEditable(false);
-					if(MainInterface.dorm==null)
-						MainInterface.dorm = new Dorm();
-					MainInterface.dorm.setDormID(textField.getText());
-					MainInterface.saveDataDorm.save(MainInterface.dorm);
-				}
+				if(MainInterface.dorm==null)
+					MainInterface.dorm = new Dorm();
+				MainInterface.dorm.setDormID(textField.getText());
+				MainInterface.saveDataDorm.save(MainInterface.dorm);
 			}
 		});
 		button.setForeground(Color.BLACK);
 		button.setBackground(Color.WHITE);
-		button.setBounds(517, 462, 97, 32);
+		button.setBounds(435, 459, 97, 32);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("\u7f16\u8f91");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainInterface.logClass.printlog("点击了编辑");
-				textField.setEditable(true);
-			}
-		});
-		button_1.setForeground(Color.BLACK);
-		button_1.setBackground(Color.WHITE);
-		button_1.setBounds(352, 462, 97, 32);
-		panel.add(button_1);
+		
 
 	}
 }
