@@ -9,8 +9,10 @@ import org.jsoup.nodes.Element;
 
 
 public class CollegeNotiCrawer {
-	private final String CollegeNotiUrl = "https://rwxy.jnu.edu.cn/11063/list.htm";
-	private final String CollegeNotiDetailUrlHead = "https://rwxy.jnu.edu.cn";
+	private String CollegeNotiUrl = new String();
+	private String CollegeNotiDetailUrlHead = new String();
+	private final String TranCollegeNotiUrl = "https://rwxy.jnu.edu.cn/11063/list.htm";
+	private final String TranCollegeNotiDetailUrlHead = "https://rwxy.jnu.edu.cn";
 	public static ArrayList<String> CollegeNotiList = new ArrayList<String>();
 	public static ArrayList<String> linkList = new ArrayList<String>();
 	public static ArrayList<String> dateList = new ArrayList<String>();
@@ -19,6 +21,8 @@ public class CollegeNotiCrawer {
 	
 	public CollegeNotiCrawer() {
 		try {
+			CollegeNotiUrl = TranCollegeNotiUrl;
+			CollegeNotiDetailUrlHead = TranCollegeNotiDetailUrlHead;
 			doc = Jsoup.connect(CollegeNotiUrl).timeout(8000).get();
 		} catch (IOException e) {
 			e.printStackTrace();

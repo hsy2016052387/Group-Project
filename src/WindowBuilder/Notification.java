@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Button;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,13 +18,29 @@ import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import com.sun.glass.ui.Menu;
+
 import ClassLibrary.CollegeNotiCrawer;
 import ClassLibrary.DeptNotiCrawer;
+import ClassLibrary.MoreCollegeNotiCrawer;
 import ClassLibrary.NewsCrawer;
 import ClassLibrary.SchoolNotiCrawer;
 import ClassLibrary.CollegeNotiCrawer;
 
 import javax.swing.JButton;
+import javax.swing.JProgressBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import java.awt.Scrollbar;
+import java.awt.Choice;
+import javax.swing.JComboBox;
 
 public class Notification extends JPanel {
 
@@ -63,26 +80,47 @@ public class Notification extends JPanel {
 		All.add(changebutton);
 		
 		JButton schoolbutton = new JButton("\u5B66\u6821\u901A\u77E5");
+		schoolbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 		
 		schoolbutton.setFont(new Font("����", Font.PLAIN, 18));
-		schoolbutton.setBounds(38, 49, 163, 60);
+		schoolbutton.setBounds(38, 40, 163, 60);
 		changebutton.add(schoolbutton);
 		
 		JButton collegebutton = new JButton("\u5B66\u9662\u901A\u77E5");
+		collegebutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		collegebutton.setFont(new Font("����", Font.PLAIN, 18));
 		
-		collegebutton.setBounds(38, 104, 163, 60);
+		collegebutton.setBounds(38, 100, 163, 60);
+		collegebutton.setToolTipText("单击查看本学院通知，右键可查看其他学院");
 		changebutton.add(collegebutton);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(collegebutton, popupMenu);
+		
+		JMenuItem TranMenuItem = new JMenuItem("翻译学院");
+		popupMenu.add(TranMenuItem);
+		
+		JMenuItem BusiMenuItem = new JMenuItem("国际商学院");
+		popupMenu.add(BusiMenuItem);
+		
+		JMenuItem PackMenuItem = new JMenuItem("包装工程学院");
+		popupMenu.add(PackMenuItem);
 		
 		JButton deptbutton = new JButton("\u6559\u52A1\u5904\u901A\u77E5");
 		
 		
 		deptbutton.setFont(new Font("����", Font.PLAIN, 18));
-		deptbutton.setBounds(38, 163, 163, 60);
+		deptbutton.setBounds(38, 160, 163, 60);
 		changebutton.add(deptbutton);
-		
+			
 		JPanel panel = new JPanel();
 		panel.setBounds(297, 37, 645, 480);
 		All.add(panel);
@@ -341,6 +379,7 @@ public class Notification extends JPanel {
 			}
 		});
 		
+		
 		deptbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -361,7 +400,98 @@ public class Notification extends JPanel {
 			}
 		});
 		
+		
+		ActionListener actionListener = new ActionListener() {
+			 
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            // TODO Auto-generated method stub
+	        	MoreCollegeNotiCrawer.CollegeNotiList = new ArrayList<String>();
+				MoreCollegeNotiCrawer.linkList = new ArrayList<String>();
+				MoreCollegeNotiCrawer.dateList = new ArrayList<String>();
+				MoreCollegeNotiCrawer.contentlist = new ArrayList<String>();
+				
+	        	if (e.getSource() == TranMenuItem) {
+					label.setText("翻译学院通知");
+					MoreCollegeNotiCrawer newone = new MoreCollegeNotiCrawer(1);
+					newone.getCollegeNoti();
+					change(newone.CollegeNotiList, newone.dateList, newone.contentlist);
+					page = 0;
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+	            }
+	        	if (e.getSource() == BusiMenuItem) {
+					label.setText("国际商学院通知");
+					MoreCollegeNotiCrawer newone = new MoreCollegeNotiCrawer(2);
+		
+					newone.getCollegeNoti();
+					change(newone.CollegeNotiList, newone.dateList, newone.contentlist);
+					page = 0;
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+	            }
+	            if (e.getSource() == PackMenuItem) {
+					label.setText("包装工程学院通知");
+					MoreCollegeNotiCrawer newone = new MoreCollegeNotiCrawer(3);
+					newone.getCollegeNoti();
+					change(newone.CollegeNotiList, newone.dateList, newone.contentlist);
+					page = 0;
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+	            }
+	        }
+	    };
+		
+	    
+	    TranMenuItem.addActionListener(actionListener);
+	    BusiMenuItem.addActionListener(actionListener);
+		PackMenuItem.addActionListener(actionListener);
+
+		
+		
+
+		
 	}
-	
-	
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+			
+		});
+	}
 }

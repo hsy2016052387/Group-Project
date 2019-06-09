@@ -17,6 +17,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JMenuBar;
+import java.awt.Component;
+import java.awt.Rectangle;
+import java.awt.Dimension;
 
 public class News extends JPanel {
 
