@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -19,14 +20,17 @@ import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
+import org.openqa.selenium.SearchContext;
 
 import com.sun.glass.ui.Menu;
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac;
 
 import ClassLibrary.CollegeNotiCrawer;
 import ClassLibrary.DeptNotiCrawer;
 import ClassLibrary.MoreCollegeNotiCrawer;
 import ClassLibrary.NewsCrawer;
 import ClassLibrary.SchoolNotiCrawer;
+import ClassLibrary.TextFieldHintListener;
 import ClassLibrary.CollegeNotiCrawer;
 
 import javax.swing.JButton;
@@ -39,8 +43,10 @@ import java.awt.Component;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import java.awt.Scrollbar;
+import java.awt.TextField;
 import java.awt.Choice;
 import javax.swing.JComboBox;
+import java.awt.Canvas;
 
 public class Notification extends JPanel {
 
@@ -51,6 +57,7 @@ public class Notification extends JPanel {
 	private static ArrayList<String> title = new ArrayList<String>();
 	private static ArrayList<String> date = new ArrayList<String>();
 	private static ArrayList<String> noticontent = new ArrayList<String>();
+	private JTextField textField;
 	
 	private void change(ArrayList<String> List1, ArrayList<String> List2, ArrayList<String> List3) {
 		title = List1;
@@ -120,6 +127,76 @@ public class Notification extends JPanel {
 		deptbutton.setFont(new Font("����", Font.PLAIN, 18));
 		deptbutton.setBounds(38, 160, 163, 60);
 		changebutton.add(deptbutton);
+		
+		JPanel searchPanel = new JPanel();
+		searchPanel.setLayout(null);
+		searchPanel.setBackground(Color.WHITE);
+		searchPanel.setBounds(0, 0, 968, 37);
+		All.add(searchPanel);
+		
+		textField = new JTextField();
+		textField.setBounds(33, 13, 220, 24);
+		textField.addFocusListener(new TextFieldHintListener(textField, "请输入搜索内容"));
+		textField.setColumns(10);
+		searchPanel.add(textField);
+		
+		
+		JLabel label_11 = new JLabel("年");
+		label_11.setBounds(442, 13, 20, 29);
+		searchPanel.add(label_11);
+		
+				
+		JLabel label_12 = new JLabel("月");
+		label_12.setBounds(630, 11, 20, 29);
+		searchPanel.add(label_12);
+		
+		JLabel label_13 = new JLabel("日");
+		label_13.setBounds(818, 11, 20, 29);
+		searchPanel.add(label_13);
+		
+		JButton button_1 = new JButton("搜索");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_1.setBounds(852, 12, 74, 27);
+		searchPanel.add(button_1);
+		
+		JComboBox<String> comboBox_year = new JComboBox<String>();
+		comboBox_year.setBounds(275, 13, 160, 24);
+		searchPanel.add(comboBox_year);
+		comboBox_year.setBackground(Color.WHITE);
+		Calendar calendar = Calendar.getInstance();
+		comboBox_year.addItem("请选择年份");
+		for(int i =2003;i<=calendar.get(Calendar.YEAR);i++) {
+			comboBox_year.addItem(i+"");
+		}
+		
+		JComboBox<String> comboBox_month = new JComboBox<String>();
+		comboBox_month.setBounds(463, 13, 160, 24);
+		searchPanel.add(comboBox_month);
+		comboBox_month.setBackground(Color.WHITE);
+		comboBox_month.addItem("请选择月份");
+		for(int i = 1; i < 10; i++) {
+			comboBox_month.addItem("0"+i+"");
+		}
+		comboBox_month.addItem("10");
+		comboBox_month.addItem("11");
+		comboBox_month.addItem("12");
+		
+		JComboBox<String> comboBox_day = new JComboBox<String>();
+		comboBox_day.setBounds(652, 13, 160, 24);
+		searchPanel.add(comboBox_day);
+		comboBox_day.setBackground(Color.WHITE);
+		comboBox_day.addItem("请选择日期");
+		for(int i = 1; i < 10; i++) {
+			comboBox_day.addItem("0"+i+"");
+		}
+		for(int i = 10; i < 32; i++) {
+			comboBox_day.addItem(i+"");
+		}
+				
+						
 			
 		JPanel panel = new JPanel();
 		panel.setBounds(297, 37, 645, 480);
@@ -243,6 +320,12 @@ public class Notification extends JPanel {
 		button.setBounds(363, 362, 113, 27);
 		panel.add(button);
 		
+		JButton reset = new JButton("重置");
+		
+		reset.setBounds(557, 13, 74, 27);
+		panel.add(reset);
+		
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 982, 530);
 		//add(scrollPane);
@@ -275,6 +358,7 @@ public class Notification extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				All.removeAll();
 				All.add(changebutton);
+				All.add(searchPanel);
 				All.add(panel);
 				All.updateUI();
 			}
@@ -470,10 +554,180 @@ public class Notification extends JPanel {
 	    TranMenuItem.addActionListener(actionListener);
 	    BusiMenuItem.addActionListener(actionListener);
 		PackMenuItem.addActionListener(actionListener);
-
-		
 		
 
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ArrayList<String> searchtitle = new ArrayList<String>();
+				ArrayList<String> searchdate = new ArrayList<String>();
+				ArrayList<String> searchnoticontent = new ArrayList<String>();
+				String searchtext = textField.getText();
+				String year = new String("");
+				String month = new String("");
+				String day = new String("");
+				StringBuilder datesb = new StringBuilder();
+				if(!comboBox_year.getSelectedItem().equals("请选择年份")) {
+					year = (String) comboBox_year.getSelectedItem();
+					datesb.append(year);
+				}
+				if(!comboBox_month.getSelectedItem().equals("请选择月份")) {;
+					month = (String) comboBox_month.getSelectedItem();
+					datesb.append("-");
+					datesb.append(month);
+				}
+				if(!comboBox_day.getSelectedItem().equals("请选择日期")) {
+					day = (String) comboBox_day.getSelectedItem();
+					datesb.append("-");
+					datesb.append(day);
+				}
+				if(datesb.length()!=0 && !searchtext.equals("请输入搜索内容")) {
+					for(int i = 0;i<SchoolNotiCrawer.dateList.size();i++) {
+						if(SchoolNotiCrawer.dateList.get(i).contains(datesb)) {
+							if(SchoolNotiCrawer.SchoolNotiList.get(i).contains(searchtext)||SchoolNotiCrawer.linkList.get(i).contains(searchtext)) {
+								searchtitle.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+								searchdate.add(SchoolNotiCrawer.dateList.get(i));
+								searchnoticontent.add(SchoolNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					for(int i = 0;i<CollegeNotiCrawer.dateList.size();i++) {
+						if(CollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+							if(CollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||CollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+								searchtitle.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(CollegeNotiCrawer.dateList.get(i));
+								searchnoticontent.add(CollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					for(int i = 0;i<DeptNotiCrawer.dateList.size();i++) {
+						if(DeptNotiCrawer.dateList.get(i).contains(datesb)) {
+							if(DeptNotiCrawer.DeptNotiList.get(i).contains(searchtext)||DeptNotiCrawer.linkList.get(i).contains(searchtext)) {
+								searchtitle.add(DeptNotiCrawer.DeptNotiList.get(i));
+								searchdate.add(DeptNotiCrawer.dateList.get(i));
+								searchnoticontent.add(DeptNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+				}
+				else if(datesb.length()!=0 && searchtext.equals("请输入搜索内容")) {
+					for(int i = 0;i<SchoolNotiCrawer.dateList.size();i++) {
+						if(SchoolNotiCrawer.dateList.get(i).contains(datesb)) {
+							searchtitle.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+							searchdate.add(SchoolNotiCrawer.dateList.get(i));
+							searchnoticontent.add(SchoolNotiCrawer.contentlist.get(i));
+						}
+					}
+					for(int i = 0;i<CollegeNotiCrawer.dateList.size();i++) {
+						if(CollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								searchtitle.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(CollegeNotiCrawer.dateList.get(i));
+								searchnoticontent.add(CollegeNotiCrawer.contentlist.get(i));
+						}
+					}
+					for(int i = 0;i<DeptNotiCrawer.dateList.size();i++) {
+						if(DeptNotiCrawer.dateList.get(i).contains(datesb)) {
+							searchtitle.add(DeptNotiCrawer.DeptNotiList.get(i));
+							searchdate.add(DeptNotiCrawer.dateList.get(i));
+							searchnoticontent.add(DeptNotiCrawer.contentlist.get(i));
+						}
+					}
+				}
+				else if(datesb.length()==0 && !searchtext.equals("请输入搜索内容")) {
+					for(int i = 0;i<SchoolNotiCrawer.dateList.size();i++) {
+						if(SchoolNotiCrawer.SchoolNotiList.get(i).contains(searchtext)||SchoolNotiCrawer.linkList.get(i).contains(searchtext)) {
+							searchtitle.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+							searchdate.add(SchoolNotiCrawer.dateList.get(i));
+							searchnoticontent.add(SchoolNotiCrawer.contentlist.get(i));
+						}
+					}
+					for(int i = 0;i<CollegeNotiCrawer.dateList.size();i++) {
+						if(CollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||CollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+							searchtitle.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+							searchdate.add(CollegeNotiCrawer.dateList.get(i));
+							searchnoticontent.add(CollegeNotiCrawer.contentlist.get(i));
+						}
+					}
+					for(int i = 0;i<DeptNotiCrawer.dateList.size();i++) {
+						if(DeptNotiCrawer.DeptNotiList.get(i).contains(searchtext)||DeptNotiCrawer.linkList.get(i).contains(searchtext)) {
+							searchtitle.add(DeptNotiCrawer.DeptNotiList.get(i));
+							searchdate.add(DeptNotiCrawer.dateList.get(i));
+							searchnoticontent.add(DeptNotiCrawer.contentlist.get(i));
+						}
+					}
+				}
+				else
+					return;
+				
+				
+				label.setText("搜索结果");
+				label_1.setText("");
+				label_3.setText("");
+				label_5.setText("");
+				label_7.setText("");
+				label_8.setText("");
+				label_2.setText("");
+				label_4.setText("");
+				label_6.setText("");
+				label_9.setText("");
+				label_10.setText("");
+				change(searchtitle, searchdate, searchnoticontent);
+				page = 0;
+				if(searchtitle.size() == 0) {
+					label_1.setText("没有找到相关内容！");
+				}
+				else if(searchtitle.size() == 1) {
+					label_1.setText(title.get(page*5+0));
+					label_2.setText(date.get(page*5+0));
+				}
+				else if(searchtitle.size() == 2) {
+					label_1.setText(title.get(page*5+0));
+					label_2.setText(date.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_4.setText(date.get(page*5+1));
+				}
+				else if(searchtitle.size() == 3) {
+					label_1.setText(title.get(page*5+0));
+					label_2.setText(date.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_4.setText(date.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_6.setText(date.get(page*5+2));
+				}
+				else if(searchtitle.size() == 4) {
+					label_1.setText(title.get(page*5+0));
+					label_2.setText(date.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_4.setText(date.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_6.setText(date.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_9.setText(date.get(page*5+3));
+				}
+				else {
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+				}	
+			}		
+		});
+		
+		reset.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("请输入搜索内容");
+				comboBox_year.setSelectedIndex(0);
+				comboBox_month.setSelectedIndex(0);
+				comboBox_day.setSelectedIndex(0);
+			}
+		});
 		
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
