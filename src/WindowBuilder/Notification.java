@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -34,6 +32,7 @@ import ClassLibrary.TextFieldHintListener;
 import ClassLibrary.CollegeNotiCrawer;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JProgressBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -47,6 +46,7 @@ import java.awt.TextField;
 import java.awt.Choice;
 import javax.swing.JComboBox;
 import java.awt.Canvas;
+import java.util.*;
 
 public class Notification extends JPanel {
 
@@ -83,7 +83,7 @@ public class Notification extends JPanel {
 		JPanel changebutton = new JPanel();
 		changebutton.setLayout(null);
 		changebutton.setBackground(Color.WHITE);
-		changebutton.setBounds(55, 92, 239, 311);
+		changebutton.setBounds(26, 153, 239, 311);
 		All.add(changebutton);
 		
 		JButton schoolbutton = new JButton("\u5B66\u6821\u901A\u77E5");
@@ -94,7 +94,7 @@ public class Notification extends JPanel {
 		
 		
 		schoolbutton.setFont(new Font("����", Font.PLAIN, 18));
-		schoolbutton.setBounds(38, 40, 163, 60);
+		schoolbutton.setBounds(38, 52, 163, 60);
 		changebutton.add(schoolbutton);
 		
 		JButton collegebutton = new JButton("\u5B66\u9662\u901A\u77E5");
@@ -105,78 +105,86 @@ public class Notification extends JPanel {
 		
 		collegebutton.setFont(new Font("����", Font.PLAIN, 18));
 		
-		collegebutton.setBounds(38, 100, 163, 60);
-		collegebutton.setToolTipText("单击查看本学院通知，右键可查看其他学院");
+		collegebutton.setBounds(38, 112, 163, 60);
+		collegebutton.setToolTipText("\u5355\u51fb\u67e5\u770b\u672c\u5b66\u9662\u901a\u77e5\uff0c\u53f3\u952e\u53ef\u67e5\u770b\u5176\u4ed6\u5b66\u9662");
 		changebutton.add(collegebutton);
 		
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(collegebutton, popupMenu);
 		
-		JMenuItem TranMenuItem = new JMenuItem("翻译学院");
+		JMenuItem TranMenuItem = new JMenuItem("\u7ffb\u8bd1\u5b66\u9662");
 		popupMenu.add(TranMenuItem);
 		
-		JMenuItem BusiMenuItem = new JMenuItem("国际商学院");
+		JMenuItem BusiMenuItem = new JMenuItem("\u56fd\u9645\u5546\u5b66\u9662");
 		popupMenu.add(BusiMenuItem);
 		
-		JMenuItem PackMenuItem = new JMenuItem("包装工程学院");
+		JMenuItem PackMenuItem = new JMenuItem("\u5305\u88c5\u5de5\u7a0b\u5b66\u9662");
 		popupMenu.add(PackMenuItem);
+		
+		JMenuItem rwMenuItem = new JMenuItem("\u4eba\u6587\u5b66\u9662");
+		popupMenu.add(rwMenuItem);
+		
+		if(MainInterface.userInfo.getCollege().equals("\u7ffb\u8bd1\u5b66\u9662")) 
+			popupMenu.remove(0);
+		else if(MainInterface.userInfo.getCollege().equals("\u56fd\u9645\u5546\u5b66\u9662"))
+			popupMenu.remove(1); 
+		else if(MainInterface.userInfo.getCollege().equals("\u7535\u6c14\u4fe1\u606f\u5b66\u9662")) 
+			popupMenu.remove(2);
+		else if(MainInterface.userInfo.getCollege().equals("\u4eba\u6587\u5b66\u9662"))
+			popupMenu.remove(3);
 		
 		JButton deptbutton = new JButton("\u6559\u52A1\u5904\u901A\u77E5");
 		
 		
 		deptbutton.setFont(new Font("����", Font.PLAIN, 18));
-		deptbutton.setBounds(38, 160, 163, 60);
+		deptbutton.setBounds(38, 172, 163, 60);
 		changebutton.add(deptbutton);
 		
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(null);
 		searchPanel.setBackground(Color.WHITE);
-		searchPanel.setBounds(0, 0, 968, 37);
+		searchPanel.setBounds(0, 0, 968, 92);
 		All.add(searchPanel);
 		
 		textField = new JTextField();
 		textField.setBounds(33, 13, 220, 24);
-		textField.addFocusListener(new TextFieldHintListener(textField, "请输入搜索内容"));
+		textField.addFocusListener(new TextFieldHintListener(textField, "\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9"));
 		textField.setColumns(10);
 		searchPanel.add(textField);
 		
 		
-		JLabel label_11 = new JLabel("年");
-		label_11.setBounds(442, 13, 20, 29);
+		JLabel label_11 = new JLabel("\u5e74");
+		label_11.setBounds(398, 15, 20, 29);
 		searchPanel.add(label_11);
 		
 				
-		JLabel label_12 = new JLabel("月");
-		label_12.setBounds(630, 11, 20, 29);
+		JLabel label_12 = new JLabel("\u6708");
+		label_12.setBounds(544, 13, 20, 29);
 		searchPanel.add(label_12);
 		
-		JLabel label_13 = new JLabel("日");
-		label_13.setBounds(818, 11, 20, 29);
+		JLabel label_13 = new JLabel("\u65e5");
+		label_13.setBounds(688, 13, 20, 29);
 		searchPanel.add(label_13);
 		
-		JButton button_1 = new JButton("搜索");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_1.setBounds(852, 12, 74, 27);
+		JButton button_1 = new JButton("\u641c\u7d22");
+		button_1.setBounds(759, 12, 74, 27);
 		searchPanel.add(button_1);
 		
 		JComboBox<String> comboBox_year = new JComboBox<String>();
-		comboBox_year.setBounds(275, 13, 160, 24);
+		comboBox_year.setBounds(275, 13, 120, 24);
 		searchPanel.add(comboBox_year);
 		comboBox_year.setBackground(Color.WHITE);
 		Calendar calendar = Calendar.getInstance();
-		comboBox_year.addItem("请选择年份");
+		comboBox_year.addItem("\u8bf7\u9009\u62e9\u5e74\u4efd");
 		for(int i =2003;i<=calendar.get(Calendar.YEAR);i++) {
 			comboBox_year.addItem(i+"");
 		}
 		
 		JComboBox<String> comboBox_month = new JComboBox<String>();
-		comboBox_month.setBounds(463, 13, 160, 24);
+		comboBox_month.setBounds(421, 13, 120, 24);
 		searchPanel.add(comboBox_month);
 		comboBox_month.setBackground(Color.WHITE);
-		comboBox_month.addItem("请选择月份");
+		comboBox_month.addItem("\u8bf7\u9009\u62e9\u6708\u4efd");
 		for(int i = 1; i < 10; i++) {
 			comboBox_month.addItem("0"+i+"");
 		}
@@ -185,10 +193,81 @@ public class Notification extends JPanel {
 		comboBox_month.addItem("12");
 		
 		JComboBox<String> comboBox_day = new JComboBox<String>();
-		comboBox_day.setBounds(652, 13, 160, 24);
+		comboBox_day.setBounds(566, 13, 120, 24);
 		searchPanel.add(comboBox_day);
 		comboBox_day.setBackground(Color.WHITE);
-		comboBox_day.addItem("请选择日期");
+		
+		JButton reset = new JButton("\u91cd\u7f6e");
+		reset.setBounds(858, 12, 74, 27);
+		searchPanel.add(reset);
+		
+		JCheckBox CheckBox_school = new JCheckBox("\u5b66\u6821");
+		CheckBox_school.setBounds(186, 56, 68, 27);
+		searchPanel.add(CheckBox_school);
+		
+		JCheckBox checkBox_dept = new JCheckBox("\u6559\u52a1\u5904");
+		checkBox_dept.setBounds(672, 56, 80, 27);
+		searchPanel.add(checkBox_dept);
+		
+		JCheckBox checkBox_rw = new JCheckBox("\u4eba\u6587\u5b66\u9662");
+		checkBox_rw.setBounds(254, 56, 94, 27);
+		searchPanel.add(checkBox_rw);
+		
+		JCheckBox checkBox_fy = new JCheckBox("\u7ffb\u8bd1\u5b66\u9662");
+		checkBox_fy.setBounds(348, 56, 94, 27);
+		searchPanel.add(checkBox_fy);
+		
+		JCheckBox checkBox_gjs = new JCheckBox("\u56fd\u9645\u5546\u5b66\u9662");
+		checkBox_gjs.setBounds(442, 56, 103, 27);
+		searchPanel.add(checkBox_gjs);
+		
+		JCheckBox checkBox_bz = new JCheckBox("\u5305\u88c5\u5de5\u7a0b\u5b66\u9662");
+		checkBox_bz.setBounds(545, 56, 127, 27);
+		searchPanel.add(checkBox_bz);
+		
+		JLabel label_14 = new JLabel("\u8bf7\u9009\u62e9\u60f3\u67e5\u8be2\u8303\u56f4\uff1a");
+		label_14.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_14.setBounds(33, 60, 144, 18);
+		searchPanel.add(label_14);
+		
+		JButton button_2 = new JButton("\u5168\u9009");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CheckBox_school.setSelected(true);
+				checkBox_rw.setSelected(true);
+				checkBox_fy.setSelected(true);
+				checkBox_gjs.setSelected(true);
+				checkBox_bz.setSelected(true);
+				checkBox_dept.setSelected(true);
+			}
+		});
+		button_2.setBounds(759, 56, 74, 27);
+		searchPanel.add(button_2);
+		
+		JButton button_3 = new JButton("\u53cd\u9009");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CheckBox_school.setSelected(CheckBox_school.isSelected()?false:true);
+				checkBox_rw.setSelected(checkBox_rw.isSelected()?false:true);
+				checkBox_fy.setSelected(checkBox_fy.isSelected()?false:true);
+				checkBox_gjs.setSelected(checkBox_gjs.isSelected()?false:true);
+				checkBox_bz.setSelected(checkBox_bz.isSelected()?false:true);
+				checkBox_dept.setSelected(checkBox_dept.isSelected()?false:true);
+			}
+		});
+		button_3.setBounds(858, 56, 74, 27);
+		searchPanel.add(button_3);
+		
+		reset.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9");
+				comboBox_year.setSelectedIndex(0);
+				comboBox_month.setSelectedIndex(0);
+				comboBox_day.setSelectedIndex(0);
+			}
+		});
+		comboBox_day.addItem("\u8bf7\u9009\u62e9\u65e5\u671f");
 		for(int i = 1; i < 10; i++) {
 			comboBox_day.addItem("0"+i+"");
 		}
@@ -199,12 +278,12 @@ public class Notification extends JPanel {
 						
 			
 		JPanel panel = new JPanel();
-		panel.setBounds(297, 37, 645, 480);
+		panel.setBounds(299, 118, 645, 399);
 		All.add(panel);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		
-		JLabel label = new JLabel("学校通知");
+		JLabel label = new JLabel("\u5b66\u6821\u901a\u77e5");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("宋体", Font.BOLD, 24));
 		label.setBounds(36, 13, 213, 37);
@@ -275,7 +354,7 @@ public class Notification extends JPanel {
 		label_10.setText(date.get(4));
 		panel.add(label_10);
 		
-		JButton btnNewButton = new JButton("上一页");
+		JButton btnNewButton = new JButton("\u4e0a\u4e00\u9875");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(page>0) {
@@ -297,7 +376,7 @@ public class Notification extends JPanel {
 		btnNewButton.setBounds(121, 362, 113, 27);
 		panel.add(btnNewButton);
 		
-		JButton button = new JButton("下一页");
+		JButton button = new JButton("\u4e0b\u4e00\u9875");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int curr = (page+2)*5;
@@ -319,11 +398,6 @@ public class Notification extends JPanel {
 		button.setFont(new Font("宋体", Font.PLAIN, 15));
 		button.setBounds(363, 362, 113, 27);
 		panel.add(button);
-		
-		JButton reset = new JButton("重置");
-		
-		reset.setBounds(557, 13, 74, 27);
-		panel.add(reset);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -428,7 +502,7 @@ public class Notification extends JPanel {
 		schoolbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				label.setText("学校通知");
+				label.setText("\u5b66\u6821\u901a\u77e5");
 				change(SchoolNotiCrawer.SchoolNotiList, SchoolNotiCrawer.dateList,SchoolNotiCrawer.contentlist);
 				page = 0;
 				label_1.setText(title.get(page*5+0));
@@ -447,19 +521,84 @@ public class Notification extends JPanel {
 		collegebutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				label.setText("学院通知");
-				change(CollegeNotiCrawer.CollegeNotiList, CollegeNotiCrawer.dateList,CollegeNotiCrawer.contentlist);
-				page = 0;
-				label_1.setText(title.get(page*5+0));
-				label_3.setText(title.get(page*5+1));
-				label_5.setText(title.get(page*5+2));
-				label_7.setText(title.get(page*5+3));
-				label_8.setText(title.get(page*5+4));
-				label_2.setText(date.get(page*5+0));
-				label_4.setText(date.get(page*5+1));
-				label_6.setText(date.get(page*5+2));
-				label_9.setText(date.get(page*5+3));
-				label_10.setText(date.get(page*5+4));
+				ArrayList<String> NList = new ArrayList<>();
+	        	ArrayList<String> DList = new ArrayList<>();
+	        	ArrayList<String> CList = new ArrayList<>();
+				label.setText("\u5b66\u9662\u901a\u77e5");
+				if(MainInterface.userInfo.getCollege().equals("\u7ffb\u8bd1\u5b66\u9662")) {
+					for(int i = 0;i<MoreCollegeNotiCrawer.fnum;i++) {
+						NList.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+						DList.add(MoreCollegeNotiCrawer.dateList.get(i));
+						CList.add(MoreCollegeNotiCrawer.contentlist.get(i));
+					}
+							
+					change(NList,DList,CList);
+					page = 0;
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+					
+				}
+				else if(MainInterface.userInfo.getCollege().equals("\u56fd\u9645\u5546\u5b66\u9662")) {
+					for(int i = MoreCollegeNotiCrawer.fnum;i<MoreCollegeNotiCrawer.snum;i++) {
+						NList.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+						DList.add(MoreCollegeNotiCrawer.dateList.get(i));
+						CList.add(MoreCollegeNotiCrawer.contentlist.get(i));
+					}
+					change(NList,DList,CList);
+					page = 0;
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+				}
+				else if(MainInterface.userInfo.getCollege().equals("\u7535\u6c14\u4fe1\u606f\u5b66\u9662")) {
+					for(int i = MoreCollegeNotiCrawer.snum;i<MoreCollegeNotiCrawer.dateList.size();i++) {
+						NList.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+						DList.add(MoreCollegeNotiCrawer.dateList.get(i));
+						CList.add(MoreCollegeNotiCrawer.contentlist.get(i));
+					}
+					change(NList,DList,CList);
+					page = 0;
+					label_1.setText(title.get(page*5+0));
+					label_3.setText(title.get(page*5+1));
+					label_5.setText(title.get(page*5+2));
+					label_7.setText(title.get(page*5+3));
+					label_8.setText(title.get(page*5+4));
+					label_2.setText(date.get(page*5+0));
+					label_4.setText(date.get(page*5+1));
+					label_6.setText(date.get(page*5+2));
+					label_9.setText(date.get(page*5+3));
+					label_10.setText(date.get(page*5+4));
+				}
+				else if(MainInterface.userInfo.getCollege().equals("\u4eba\u6587\u5b66\u9662")){
+            		change(CollegeNotiCrawer.CollegeNotiList, CollegeNotiCrawer.dateList,CollegeNotiCrawer.contentlist);
+            		page = 0;
+            		label_1.setText(title.get(page*5+0));
+            		label_3.setText(title.get(page*5+1));
+            		label_5.setText(title.get(page*5+2));
+            		label_7.setText(title.get(page*5+3));
+            		label_8.setText(title.get(page*5+4));
+            		label_2.setText(date.get(page*5+0));
+            		label_4.setText(date.get(page*5+1));
+            		label_6.setText(date.get(page*5+2));
+            		label_9.setText(date.get(page*5+3));
+            		label_10.setText(date.get(page*5+4));
+				}
+				
 			}
 		});
 		
@@ -467,7 +606,7 @@ public class Notification extends JPanel {
 		deptbutton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				label.setText("教务处通知");
+				label.setText("\u6559\u52a1\u5904\u901a\u77e5");
 				change(DeptNotiCrawer.DeptNotiList, DeptNotiCrawer.dateList, DeptNotiCrawer.contentlist);
 				page = 0;
 				label_1.setText(title.get(page*5+0));
@@ -490,16 +629,18 @@ public class Notification extends JPanel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            // TODO Auto-generated method stub
-	        	MoreCollegeNotiCrawer.CollegeNotiList = new ArrayList<String>();
-				MoreCollegeNotiCrawer.linkList = new ArrayList<String>();
-				MoreCollegeNotiCrawer.dateList = new ArrayList<String>();
-				MoreCollegeNotiCrawer.contentlist = new ArrayList<String>();
-				
+	        	ArrayList<String> NList = new ArrayList<>();
+	        	ArrayList<String> DList = new ArrayList<>();
+	        	ArrayList<String> CList = new ArrayList<>();
 	        	if (e.getSource() == TranMenuItem) {
-					label.setText("翻译学院通知");
-					MoreCollegeNotiCrawer newone = new MoreCollegeNotiCrawer(1);
-					newone.getCollegeNoti();
-					change(newone.CollegeNotiList, newone.dateList, newone.contentlist);
+					label.setText("\u7ffb\u8bd1\u5b66\u9662\u901a\u77e5");
+					for(int i = 0;i<MoreCollegeNotiCrawer.fnum;i++) {
+						NList.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+						DList.add(MoreCollegeNotiCrawer.dateList.get(i));
+						CList.add(MoreCollegeNotiCrawer.contentlist.get(i));
+					}
+							
+					change(NList,DList,CList);
 					page = 0;
 					label_1.setText(title.get(page*5+0));
 					label_3.setText(title.get(page*5+1));
@@ -513,11 +654,13 @@ public class Notification extends JPanel {
 					label_10.setText(date.get(page*5+4));
 	            }
 	        	if (e.getSource() == BusiMenuItem) {
-					label.setText("国际商学院通知");
-					MoreCollegeNotiCrawer newone = new MoreCollegeNotiCrawer(2);
-		
-					newone.getCollegeNoti();
-					change(newone.CollegeNotiList, newone.dateList, newone.contentlist);
+					label.setText("\u56fd\u9645\u5546\u5b66\u9662\u901a\u77e5");
+					for(int i = MoreCollegeNotiCrawer.fnum;i<MoreCollegeNotiCrawer.snum;i++) {
+						NList.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+						DList.add(MoreCollegeNotiCrawer.dateList.get(i));
+						CList.add(MoreCollegeNotiCrawer.contentlist.get(i));
+					}
+					change(NList,DList,CList);
 					page = 0;
 					label_1.setText(title.get(page*5+0));
 					label_3.setText(title.get(page*5+1));
@@ -531,10 +674,13 @@ public class Notification extends JPanel {
 					label_10.setText(date.get(page*5+4));
 	            }
 	            if (e.getSource() == PackMenuItem) {
-					label.setText("包装工程学院通知");
-					MoreCollegeNotiCrawer newone = new MoreCollegeNotiCrawer(3);
-					newone.getCollegeNoti();
-					change(newone.CollegeNotiList, newone.dateList, newone.contentlist);
+					label.setText("\u5305\u88c5\u5de5\u7a0b\u5b66\u9662\u901a\u77e5");
+					for(int i = MoreCollegeNotiCrawer.snum;i<MoreCollegeNotiCrawer.dateList.size();i++) {
+						NList.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+						DList.add(MoreCollegeNotiCrawer.dateList.get(i));
+						CList.add(MoreCollegeNotiCrawer.contentlist.get(i));
+					}
+					change(NList,DList,CList);
 					page = 0;
 					label_1.setText(title.get(page*5+0));
 					label_3.setText(title.get(page*5+1));
@@ -547,6 +693,22 @@ public class Notification extends JPanel {
 					label_9.setText(date.get(page*5+3));
 					label_10.setText(date.get(page*5+4));
 	            }
+	            if(e.getSource() == rwMenuItem) {
+	            	System.out.println("123");
+	            	label.setText("\u4eba\u6587\u5b66\u9662\u901a\u77e5");
+            		change(CollegeNotiCrawer.CollegeNotiList, CollegeNotiCrawer.dateList,CollegeNotiCrawer.contentlist);
+            		page = 0;
+            		label_1.setText(title.get(page*5+0));
+            		label_3.setText(title.get(page*5+1));
+            		label_5.setText(title.get(page*5+2));
+            		label_7.setText(title.get(page*5+3));
+            		label_8.setText(title.get(page*5+4));
+            		label_2.setText(date.get(page*5+0));
+            		label_4.setText(date.get(page*5+1));
+            		label_6.setText(date.get(page*5+2));
+            		label_9.setText(date.get(page*5+3));
+            		label_10.setText(date.get(page*5+4));
+	            }
 	        }
 	    };
 		
@@ -554,6 +716,7 @@ public class Notification extends JPanel {
 	    TranMenuItem.addActionListener(actionListener);
 	    BusiMenuItem.addActionListener(actionListener);
 		PackMenuItem.addActionListener(actionListener);
+		rwMenuItem.addActionListener(actionListener);
 		
 
 		button_1.addMouseListener(new MouseAdapter() {
@@ -562,105 +725,273 @@ public class Notification extends JPanel {
 				ArrayList<String> searchtitle = new ArrayList<String>();
 				ArrayList<String> searchdate = new ArrayList<String>();
 				ArrayList<String> searchnoticontent = new ArrayList<String>();
+				ArrayList<String> searchtitle_sch = new ArrayList<String>();
+				ArrayList<String> searchnoticontent_sch = new ArrayList<String>();
+				ArrayList<String> searchtitle_rw = new ArrayList<String>();
+				ArrayList<String> searchnoticontent_rw = new ArrayList<String>();
+				ArrayList<String> searchtitle_dept = new ArrayList<String>();
+				ArrayList<String> searchnoticontent_dept = new ArrayList<String>();
+				ArrayList<String> searchtitle_fy = new ArrayList<String>();
+				ArrayList<String> searchnoticontent_fy = new ArrayList<String>();
+				ArrayList<String> searchtitle_gjs = new ArrayList<String>();
+				ArrayList<String> searchnoticontent_gjs = new ArrayList<String>();
+				ArrayList<String> searchtitle_bz = new ArrayList<String>();
+				ArrayList<String> searchnoticontent_bz = new ArrayList<String>();
 				String searchtext = textField.getText();
 				String year = new String("");
 				String month = new String("");
 				String day = new String("");
 				StringBuilder datesb = new StringBuilder();
-				if(!comboBox_year.getSelectedItem().equals("请选择年份")) {
+				if(!comboBox_year.getSelectedItem().equals("\u8bf7\u9009\u62e9\u5e74\u4efd")) {
 					year = (String) comboBox_year.getSelectedItem();
 					datesb.append(year);
 				}
-				if(!comboBox_month.getSelectedItem().equals("请选择月份")) {;
+				if(!comboBox_month.getSelectedItem().equals("\u8bf7\u9009\u62e9\u6708\u4efd")) {;
 					month = (String) comboBox_month.getSelectedItem();
 					datesb.append("-");
 					datesb.append(month);
 				}
-				if(!comboBox_day.getSelectedItem().equals("请选择日期")) {
+				if(!comboBox_day.getSelectedItem().equals("\u8bf7\u9009\u62e9\u65e5\u671f")) {
 					day = (String) comboBox_day.getSelectedItem();
 					datesb.append("-");
 					datesb.append(day);
 				}
-				if(datesb.length()!=0 && !searchtext.equals("请输入搜索内容")) {
-					for(int i = 0;i<SchoolNotiCrawer.dateList.size();i++) {
-						if(SchoolNotiCrawer.dateList.get(i).contains(datesb)) {
+				if(datesb.length()!=0 && !searchtext.equals("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9")) {
+					if(CheckBox_school.isSelected()) {
+						for(int i = 0;i<SchoolNotiCrawer.contentlist.size();i++) {
+							if(SchoolNotiCrawer.dateList.get(i).contains(datesb)) {
+								if(SchoolNotiCrawer.SchoolNotiList.get(i).contains(searchtext)||SchoolNotiCrawer.linkList.get(i).contains(searchtext)) {
+									searchtitle_sch.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+									searchdate.add(SchoolNotiCrawer.dateList.get(i)+"1");
+									searchnoticontent_sch.add(SchoolNotiCrawer.contentlist.get(i));
+								}
+							}
+						}
+					}
+					if(checkBox_rw.isSelected()) {
+						for(int i = 0;i<CollegeNotiCrawer.contentlist.size();i++) {
+							if(CollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								if(CollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||CollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+									searchtitle_rw.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+									searchdate.add(CollegeNotiCrawer.dateList.get(i)+"2");
+									searchnoticontent_rw.add(CollegeNotiCrawer.contentlist.get(i));
+								}
+							}
+						}
+					}
+					if(checkBox_dept.isSelected()) {
+						for(int i = 0;i<DeptNotiCrawer.contentlist.size();i++) {
+							if(DeptNotiCrawer.dateList.get(i).contains(datesb)) {
+								if(DeptNotiCrawer.DeptNotiList.get(i).contains(searchtext)||DeptNotiCrawer.linkList.get(i).contains(searchtext)) {
+									searchtitle_dept.add(DeptNotiCrawer.DeptNotiList.get(i));
+									searchdate.add(DeptNotiCrawer.dateList.get(i)+"3");
+									searchnoticontent_dept.add(DeptNotiCrawer.contentlist.get(i));
+								}
+							}
+						}
+					}
+					if(checkBox_fy.isSelected()) {
+						for(int i = 0;i<MoreCollegeNotiCrawer.fnum;i++) {
+							if(MoreCollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								if(MoreCollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||MoreCollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+									searchtitle_fy.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+									searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"4");
+									searchnoticontent_fy.add(MoreCollegeNotiCrawer.contentlist.get(i));
+								}
+							}
+						}
+					}
+					if(checkBox_gjs.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.fnum;i<MoreCollegeNotiCrawer.snum;i++) {
+							if(MoreCollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								if(MoreCollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||MoreCollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+									searchtitle_gjs.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+									searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"5");
+									searchnoticontent_gjs.add(MoreCollegeNotiCrawer.contentlist.get(i));
+								}
+							}
+						}
+					}
+					if(checkBox_bz.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.snum;i<MoreCollegeNotiCrawer.contentlist.size();i++) {
+							if(MoreCollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								if(MoreCollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||MoreCollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+									searchtitle_bz.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+									searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"6");
+									searchnoticontent_bz.add(MoreCollegeNotiCrawer.contentlist.get(i));
+								}
+							}
+						}
+					}
+				}
+				else if(datesb.length()!=0 && searchtext.equals("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9")) {
+					if(CheckBox_school.isSelected()) {
+						for(int i = 0;i<SchoolNotiCrawer.contentlist.size();i++) {
+							if(SchoolNotiCrawer.dateList.get(i).contains(datesb)) {
+								searchtitle_sch.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+								searchdate.add(SchoolNotiCrawer.dateList.get(i)+"1");
+								searchnoticontent_sch.add(SchoolNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_rw.isSelected()) {
+						for(int i = 0;i<CollegeNotiCrawer.contentlist.size();i++) {
+							if(CollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+									searchtitle_rw.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+									searchdate.add(CollegeNotiCrawer.dateList.get(i)+"2");
+									searchnoticontent_rw.add(CollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_dept.isSelected()) {
+						for(int i = 0;i<DeptNotiCrawer.contentlist.size();i++) {
+							if(DeptNotiCrawer.dateList.get(i).contains(datesb)) {
+								searchtitle_dept.add(DeptNotiCrawer.DeptNotiList.get(i));
+								searchdate.add(DeptNotiCrawer.dateList.get(i)+"3");
+								searchnoticontent_dept.add(DeptNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_fy.isSelected()) {
+						for(int i = 0;i<MoreCollegeNotiCrawer.fnum;i++) {
+							if(MoreCollegeNotiCrawer.dateList.get(i).contains(datesb)) {	
+								searchtitle_fy.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"4");
+								searchnoticontent_fy.add(MoreCollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_gjs.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.fnum;i<MoreCollegeNotiCrawer.snum;i++) {
+							if(MoreCollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								searchtitle_gjs.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"5");
+								searchnoticontent_gjs.add(MoreCollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_bz.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.snum;i<MoreCollegeNotiCrawer.contentlist.size();i++) {
+							if(MoreCollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+								searchtitle_bz.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"6");
+								searchnoticontent_bz.add(MoreCollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+				}
+				else if(datesb.length()==0 && !searchtext.equals("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9")) {
+					if(CheckBox_school.isSelected()) {
+						for(int i = 0;i<SchoolNotiCrawer.contentlist.size();i++) {
 							if(SchoolNotiCrawer.SchoolNotiList.get(i).contains(searchtext)||SchoolNotiCrawer.linkList.get(i).contains(searchtext)) {
-								searchtitle.add(SchoolNotiCrawer.SchoolNotiList.get(i));
-								searchdate.add(SchoolNotiCrawer.dateList.get(i));
-								searchnoticontent.add(SchoolNotiCrawer.contentlist.get(i));
+								searchtitle_sch.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+								searchdate.add(SchoolNotiCrawer.dateList.get(i)+"1");
+								searchnoticontent_sch.add(SchoolNotiCrawer.contentlist.get(i));
 							}
 						}
 					}
-					for(int i = 0;i<CollegeNotiCrawer.dateList.size();i++) {
-						if(CollegeNotiCrawer.dateList.get(i).contains(datesb)) {
+					if(checkBox_rw.isSelected()) {
+						for(int i = 0;i<CollegeNotiCrawer.contentlist.size();i++) {
 							if(CollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||CollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
-								searchtitle.add(CollegeNotiCrawer.CollegeNotiList.get(i));
-								searchdate.add(CollegeNotiCrawer.dateList.get(i));
-								searchnoticontent.add(CollegeNotiCrawer.contentlist.get(i));
+								searchtitle_rw.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(CollegeNotiCrawer.dateList.get(i)+"2");
+								searchnoticontent_rw.add(CollegeNotiCrawer.contentlist.get(i));
 							}
 						}
 					}
-					for(int i = 0;i<DeptNotiCrawer.dateList.size();i++) {
-						if(DeptNotiCrawer.dateList.get(i).contains(datesb)) {
+					if(checkBox_dept.isSelected()) {
+						for(int i = 0;i<DeptNotiCrawer.contentlist.size();i++) {
 							if(DeptNotiCrawer.DeptNotiList.get(i).contains(searchtext)||DeptNotiCrawer.linkList.get(i).contains(searchtext)) {
-								searchtitle.add(DeptNotiCrawer.DeptNotiList.get(i));
-								searchdate.add(DeptNotiCrawer.dateList.get(i));
-								searchnoticontent.add(DeptNotiCrawer.contentlist.get(i));
+								searchtitle_dept.add(DeptNotiCrawer.DeptNotiList.get(i));
+								searchdate.add(DeptNotiCrawer.dateList.get(i)+"3");
+								searchnoticontent_dept.add(DeptNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_fy.isSelected()) {
+						for(int i = 0;i<MoreCollegeNotiCrawer.fnum;i++) {
+							if(MoreCollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||MoreCollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+								searchtitle_fy.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"4");
+								searchnoticontent_fy.add(MoreCollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_gjs.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.fnum;i<MoreCollegeNotiCrawer.snum;i++) {
+							if(MoreCollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||MoreCollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+								searchtitle_gjs.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"5");
+								searchnoticontent_gjs.add(MoreCollegeNotiCrawer.contentlist.get(i));
+							}
+						}
+					}
+					if(checkBox_bz.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.snum;i<MoreCollegeNotiCrawer.contentlist.size();i++) {
+							if(MoreCollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||MoreCollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
+								searchtitle_bz.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"6");
+								searchnoticontent_bz.add(MoreCollegeNotiCrawer.contentlist.get(i));
 							}
 						}
 					}
 				}
-				else if(datesb.length()!=0 && searchtext.equals("请输入搜索内容")) {
-					for(int i = 0;i<SchoolNotiCrawer.dateList.size();i++) {
-						if(SchoolNotiCrawer.dateList.get(i).contains(datesb)) {
-							searchtitle.add(SchoolNotiCrawer.SchoolNotiList.get(i));
-							searchdate.add(SchoolNotiCrawer.dateList.get(i));
-							searchnoticontent.add(SchoolNotiCrawer.contentlist.get(i));
+				else {
+					if(CheckBox_school.isSelected()) {
+						for(int i = 0;i<SchoolNotiCrawer.contentlist.size();i++) {
+								searchtitle_sch.add(SchoolNotiCrawer.SchoolNotiList.get(i));
+								searchdate.add(SchoolNotiCrawer.dateList.get(i)+"1");
+								searchnoticontent_sch.add(SchoolNotiCrawer.contentlist.get(i));
 						}
 					}
-					for(int i = 0;i<CollegeNotiCrawer.dateList.size();i++) {
-						if(CollegeNotiCrawer.dateList.get(i).contains(datesb)) {
-								searchtitle.add(CollegeNotiCrawer.CollegeNotiList.get(i));
-								searchdate.add(CollegeNotiCrawer.dateList.get(i));
-								searchnoticontent.add(CollegeNotiCrawer.contentlist.get(i));
+					if(checkBox_rw.isSelected()) {
+						for(int i = 0;i<CollegeNotiCrawer.contentlist.size();i++) {
+								searchtitle_rw.add(CollegeNotiCrawer.CollegeNotiList.get(i));
+								searchdate.add(CollegeNotiCrawer.dateList.get(i)+"2");
+								searchnoticontent_rw.add(CollegeNotiCrawer.contentlist.get(i));
 						}
 					}
-					for(int i = 0;i<DeptNotiCrawer.dateList.size();i++) {
-						if(DeptNotiCrawer.dateList.get(i).contains(datesb)) {
-							searchtitle.add(DeptNotiCrawer.DeptNotiList.get(i));
-							searchdate.add(DeptNotiCrawer.dateList.get(i));
-							searchnoticontent.add(DeptNotiCrawer.contentlist.get(i));
+					if(checkBox_dept.isSelected()) {
+						for(int i = 0;i<DeptNotiCrawer.contentlist.size();i++) {
+							searchtitle_dept.add(DeptNotiCrawer.DeptNotiList.get(i));
+							searchdate.add(DeptNotiCrawer.dateList.get(i)+"3");
+							searchnoticontent_dept.add(DeptNotiCrawer.contentlist.get(i));
+						}
+					}
+					if(checkBox_fy.isSelected()) {
+						for(int i = 0;i<MoreCollegeNotiCrawer.fnum;i++) {
+							searchtitle_fy.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+							searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"4");
+							searchnoticontent_fy.add(MoreCollegeNotiCrawer.contentlist.get(i));
+						}
+					}
+					if(checkBox_gjs.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.fnum;i<MoreCollegeNotiCrawer.snum;i++) {
+							searchtitle_gjs.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+							searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"5");
+							searchnoticontent_gjs.add(MoreCollegeNotiCrawer.contentlist.get(i));
+						}
+					}
+					if(checkBox_bz.isSelected()) {
+						for(int i = MoreCollegeNotiCrawer.snum;i<MoreCollegeNotiCrawer.contentlist.size();i++) {
+							searchtitle_bz.add(MoreCollegeNotiCrawer.CollegeNotiList.get(i));
+							searchdate.add(MoreCollegeNotiCrawer.dateList.get(i)+"6");
+							searchnoticontent_bz.add(MoreCollegeNotiCrawer.contentlist.get(i));
 						}
 					}
 				}
-				else if(datesb.length()==0 && !searchtext.equals("请输入搜索内容")) {
-					for(int i = 0;i<SchoolNotiCrawer.dateList.size();i++) {
-						if(SchoolNotiCrawer.SchoolNotiList.get(i).contains(searchtext)||SchoolNotiCrawer.linkList.get(i).contains(searchtext)) {
-							searchtitle.add(SchoolNotiCrawer.SchoolNotiList.get(i));
-							searchdate.add(SchoolNotiCrawer.dateList.get(i));
-							searchnoticontent.add(SchoolNotiCrawer.contentlist.get(i));
-						}
+					
+				Collections.sort(searchdate, new Comparator<String>() {
+					@Override
+					public int compare(String o1, String o2) {
+						// TODO 自动生成的方法存根
+						return o2.compareTo(o1);
 					}
-					for(int i = 0;i<CollegeNotiCrawer.dateList.size();i++) {
-						if(CollegeNotiCrawer.CollegeNotiList.get(i).contains(searchtext)||CollegeNotiCrawer.linkList.get(i).contains(searchtext)) {
-							searchtitle.add(CollegeNotiCrawer.CollegeNotiList.get(i));
-							searchdate.add(CollegeNotiCrawer.dateList.get(i));
-							searchnoticontent.add(CollegeNotiCrawer.contentlist.get(i));
-						}
-					}
-					for(int i = 0;i<DeptNotiCrawer.dateList.size();i++) {
-						if(DeptNotiCrawer.DeptNotiList.get(i).contains(searchtext)||DeptNotiCrawer.linkList.get(i).contains(searchtext)) {
-							searchtitle.add(DeptNotiCrawer.DeptNotiList.get(i));
-							searchdate.add(DeptNotiCrawer.dateList.get(i));
-							searchnoticontent.add(DeptNotiCrawer.contentlist.get(i));
-						}
-					}
-				}
-				else
-					return;
+					
+				});
 				
 				
-				label.setText("搜索结果");
+				label.setText("\u641c\u7d22\u7ed3\u679c");
 				label_1.setText("");
 				label_3.setText("");
 				label_5.setText("");
@@ -671,63 +1002,95 @@ public class Notification extends JPanel {
 				label_6.setText("");
 				label_9.setText("");
 				label_10.setText("");
-				change(searchtitle, searchdate, searchnoticontent);
 				page = 0;
-				if(searchtitle.size() == 0) {
-					label_1.setText("没有找到相关内容！");
-				}
-				else if(searchtitle.size() == 1) {
-					label_1.setText(title.get(page*5+0));
-					label_2.setText(date.get(page*5+0));
-				}
-				else if(searchtitle.size() == 2) {
-					label_1.setText(title.get(page*5+0));
-					label_2.setText(date.get(page*5+0));
-					label_3.setText(title.get(page*5+1));
-					label_4.setText(date.get(page*5+1));
-				}
-				else if(searchtitle.size() == 3) {
-					label_1.setText(title.get(page*5+0));
-					label_2.setText(date.get(page*5+0));
-					label_3.setText(title.get(page*5+1));
-					label_4.setText(date.get(page*5+1));
-					label_5.setText(title.get(page*5+2));
-					label_6.setText(date.get(page*5+2));
-				}
-				else if(searchtitle.size() == 4) {
-					label_1.setText(title.get(page*5+0));
-					label_2.setText(date.get(page*5+0));
-					label_3.setText(title.get(page*5+1));
-					label_4.setText(date.get(page*5+1));
-					label_5.setText(title.get(page*5+2));
-					label_6.setText(date.get(page*5+2));
-					label_7.setText(title.get(page*5+3));
-					label_9.setText(date.get(page*5+3));
+				if(searchdate.size() == 0) {
+					label_1.setText("\u6ca1\u6709\u627e\u5230\u76f8\u5173\u5185\u5bb9\uff01");
 				}
 				else {
-					label_1.setText(title.get(page*5+0));
-					label_3.setText(title.get(page*5+1));
-					label_5.setText(title.get(page*5+2));
-					label_7.setText(title.get(page*5+3));
-					label_8.setText(title.get(page*5+4));
-					label_2.setText(date.get(page*5+0));
-					label_4.setText(date.get(page*5+1));
-					label_6.setText(date.get(page*5+2));
-					label_9.setText(date.get(page*5+3));
-					label_10.setText(date.get(page*5+4));
-				}	
+					int psch=0,prw=0,pdept=0,pfy=0,pgjs=0,pbz=0;
+					for(String ss : searchdate) {
+						if(ss.charAt(ss.length()-1) == '1') {
+							searchtitle.add(searchtitle_sch.get(psch));
+							searchnoticontent.add(searchnoticontent_sch.get(psch));
+							psch++;
+						}
+						else if(ss.charAt(ss.length()-1) == '2') {
+							searchtitle.add(searchtitle_rw.get(prw));
+							searchnoticontent.add(searchnoticontent_rw.get(prw));
+							prw++;
+						}
+						else if(ss.charAt(ss.length()-1) == '3') {
+							searchtitle.add(searchtitle_dept.get(pdept));
+							searchnoticontent.add(searchnoticontent_dept.get(pdept));
+							pdept++;
+						}
+						else if(ss.charAt(ss.length()-1) == '4') {
+							searchtitle.add(searchtitle_fy.get(pfy));
+							searchnoticontent.add(searchnoticontent_fy.get(pfy));
+							pfy++;
+						}
+						else if(ss.charAt(ss.length()-1) == '5') {
+							searchtitle.add(searchtitle_gjs.get(pgjs));
+							searchnoticontent.add(searchnoticontent_gjs.get(pgjs));
+							pgjs++;
+						}
+						else if(ss.charAt(ss.length()-1) == '6') {
+							searchtitle.add(searchtitle_bz.get(pbz));
+							searchnoticontent.add(searchnoticontent_bz.get(pbz));
+							pbz++;
+						}
+					}
+					ArrayList<String> searchdate2 = new ArrayList<>();
+					for(String ss:searchdate) {
+						searchdate2.add(ss.substring(0,ss.length()-1));
+					}
+					change(searchtitle, searchdate2, searchnoticontent);
+					if(searchtitle.size() == 1) {
+						label_1.setText(title.get(page*5+0));
+						label_2.setText(date.get(page*5+0));
+					}
+					else if(searchtitle.size() == 2) {
+						label_1.setText(title.get(page*5+0));
+						label_2.setText(date.get(page*5+0));
+						label_3.setText(title.get(page*5+1));
+						label_4.setText(date.get(page*5+1));
+					}
+					else if(searchtitle.size() == 3) {
+						label_1.setText(title.get(page*5+0));
+						label_2.setText(date.get(page*5+0));
+						label_3.setText(title.get(page*5+1));
+						label_4.setText(date.get(page*5+1));
+						label_5.setText(title.get(page*5+2));
+						label_6.setText(date.get(page*5+2));
+					}
+					else if(searchtitle.size() == 4) {
+						label_1.setText(title.get(page*5+0));
+						label_2.setText(date.get(page*5+0));
+						label_3.setText(title.get(page*5+1));
+						label_4.setText(date.get(page*5+1));
+						label_5.setText(title.get(page*5+2));
+						label_6.setText(date.get(page*5+2));
+						label_7.setText(title.get(page*5+3));
+						label_9.setText(date.get(page*5+3));
+					}
+					else {
+						label_1.setText(title.get(page*5+0));
+						label_3.setText(title.get(page*5+1));
+						label_5.setText(title.get(page*5+2));
+						label_7.setText(title.get(page*5+3));
+						label_8.setText(title.get(page*5+4));
+						label_2.setText(date.get(page*5+0));
+						label_4.setText(date.get(page*5+1));
+						label_6.setText(date.get(page*5+2));
+						label_9.setText(date.get(page*5+3));
+						label_10.setText(date.get(page*5+4));
+					}	
+				}
+			    
 			}		
 		});
 		
-		reset.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textField.setText("请输入搜索内容");
-				comboBox_year.setSelectedIndex(0);
-				comboBox_month.setSelectedIndex(0);
-				comboBox_day.setSelectedIndex(0);
-			}
-		});
+		
 		
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
@@ -748,4 +1111,6 @@ public class Notification extends JPanel {
 			
 		});
 	}
+	
+	
 }

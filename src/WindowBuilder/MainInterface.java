@@ -89,6 +89,7 @@ public class MainInterface {
 			new WorkInfoCreate().start();
 			new SchoolInfoCreate().start();
 			new DeptInfoCreate().start();
+			new MoreCollegeInfoCreate().start();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -97,6 +98,7 @@ public class MainInterface {
 			new WorkInfoCreate().start();
 			new SchoolInfoCreate().start();
 			new DeptInfoCreate().start();
+			new MoreCollegeInfoCreate().start();
 		}
 		while (NewsCrawer.NewsList.size() < 3 || WorkInfoCrawer.workInfoList.size()<3) {
 			Thread.currentThread().yield();

@@ -71,22 +71,22 @@ public class News extends JPanel {
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(33, 13, 220, 24);
-		textField.addFocusListener(new TextFieldHintListener(textField, "请输入搜索内容"));
+		textField.addFocusListener(new TextFieldHintListener(textField, "\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9"));
 		searchPanel.add(textField);
 		
-		JLabel label_11 = new JLabel("年");
+		JLabel label_11 = new JLabel("\u5e74");
 		label_11.setBounds(442, 13, 20, 29);
 		searchPanel.add(label_11);
 		
-		JLabel label_12 = new JLabel("月");
+		JLabel label_12 = new JLabel("\u6708");
 		label_12.setBounds(630, 11, 20, 29);
 		searchPanel.add(label_12);
 		
-		JLabel label_13 = new JLabel("日");
+		JLabel label_13 = new JLabel("\u65e5");
 		label_13.setBounds(818, 11, 20, 29);
 		searchPanel.add(label_13);
 		
-		JButton button_1 = new JButton("搜索");
+		JButton button_1 = new JButton("\u641c\u7d22");
 		
 		button_1.setBounds(852, 12, 74, 27);
 		searchPanel.add(button_1);
@@ -96,7 +96,7 @@ public class News extends JPanel {
 		comboBox_year.setBounds(275, 13, 160, 24);
 		searchPanel.add(comboBox_year);
 		Calendar calendar = Calendar.getInstance();
-		comboBox_year.addItem("请选择年份");
+		comboBox_year.addItem("\u8bf7\u9009\u62e9\u5e74\u4efd");
 		for(int i =2003;i<=calendar.get(Calendar.YEAR);i++) {
 			comboBox_year.addItem(i+"");
 		}
@@ -105,7 +105,7 @@ public class News extends JPanel {
 		comboBox_month.setBackground(Color.WHITE);
 		comboBox_month.setBounds(463, 13, 160, 24);
 		searchPanel.add(comboBox_month);
-		comboBox_month.addItem("请选择月份");
+		comboBox_month.addItem("\u8bf7\u9009\u62e9\u6708\u4efd");
 		for(int i = 1; i < 10; i++) {
 			comboBox_month.addItem("0"+i+"");
 		}
@@ -117,7 +117,7 @@ public class News extends JPanel {
 		comboBox_day.setBackground(Color.WHITE);
 		comboBox_day.setBounds(652, 13, 160, 24);
 		searchPanel.add(comboBox_day);
-		comboBox_day.addItem("请选择日期");
+		comboBox_day.addItem("\u8bf7\u9009\u62e9\u65e5\u671f");
 		for(int i = 1; i < 10; i++) {
 			comboBox_day.addItem("0"+i+"");
 		}
@@ -256,7 +256,7 @@ public class News extends JPanel {
 		button.setBounds(509, 391, 113, 27);
 		panel.add(button);
 		
-		JButton reset = new JButton("重置");
+		JButton reset = new JButton("\u91cd\u7f6e");
 		
 		reset.setBounds(855, 64, 72, 27);
 		panel.add(reset);
@@ -372,21 +372,21 @@ public class News extends JPanel {
 				String month = new String("");
 				String day = new String("");
 				StringBuilder datesb = new StringBuilder();
-				if(!comboBox_year.getSelectedItem().equals("请选择年份")) {
+				if(!comboBox_year.getSelectedItem().equals("\u8bf7\u9009\u62e9\u5e74\u4efd")) {
 					year = (String) comboBox_year.getSelectedItem();
 					datesb.append(year);
 				}
-				if(!comboBox_month.getSelectedItem().equals("请选择月份")) {;
+				if(!comboBox_month.getSelectedItem().equals("\u8bf7\u9009\u62e9\u6708\u4efd")) {;
 					month = (String) comboBox_month.getSelectedItem();
 					datesb.append("-");
 					datesb.append(month);
 				}
-				if(!comboBox_day.getSelectedItem().equals("请选择日期")) {
+				if(!comboBox_day.getSelectedItem().equals("\u8bf7\u9009\u62e9\u65e5\u671f")) {
 					day = (String) comboBox_day.getSelectedItem();
 					datesb.append("-");
 					datesb.append(day);
 				}
-				if(datesb.length()!=0 && !searchtext.equals("请输入搜索内容")) {
+				if(datesb.length()!=0 && !searchtext.equals("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9")) {
 					for(int i = 0;i<NewsCrawer.dateList.size();i++) {
 						if(NewsCrawer.dateList.get(i).contains(datesb)) {
 							if(NewsCrawer.NewsList.get(i).contains(searchtext)||NewsCrawer.linkList.get(i).contains(searchtext)) {
@@ -397,7 +397,7 @@ public class News extends JPanel {
 						}
 					}
 				}
-				else if(datesb.length()!=0 && searchtext.equals("请输入搜索内容")) {
+				else if(datesb.length()!=0 && searchtext.equals("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9")) {
 					for(int i = 0;i<NewsCrawer.dateList.size();i++) {
 						if(NewsCrawer.dateList.get(i).contains(datesb)) {
 							searchtitle.add(NewsCrawer.NewsList.get(i));
@@ -406,7 +406,7 @@ public class News extends JPanel {
 						}
 					}
 				}
-				else if(datesb.length()==0 && !searchtext.equals("请输入搜索内容")) {
+				else if(datesb.length()==0 && !searchtext.equals("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9")) {
 					for(int i = 0;i<NewsCrawer.dateList.size();i++) {
 						if(NewsCrawer.NewsList.get(i).contains(searchtext)||NewsCrawer.linkList.get(i).contains(searchtext)) {
 							searchtitle.add(NewsCrawer.NewsList.get(i));
@@ -419,7 +419,7 @@ public class News extends JPanel {
 					return;
 				
 				
-				label.setText("搜索结果");
+				label.setText("\u641c\u7d22\u7ed3\u679c");
 				label_1.setText("");
 				label_3.setText("");
 				label_5.setText("");
@@ -433,7 +433,7 @@ public class News extends JPanel {
 				change(searchtitle, searchdate, searchnoticontent);
 				page = 0;
 				if(searchtitle.size() == 0) {
-					label_1.setText("没有找到相关内容！");
+					label_1.setText("\u6ca1\u6709\u627e\u5230\u76f8\u5173\u5185\u5bb9\uff01");
 				}
 				else if(searchtitle.size() == 1) {
 					label_1.setText(title.get(page*5+0));
@@ -481,11 +481,11 @@ public class News extends JPanel {
 		reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField.setText("请输入搜索内容");
+				textField.setText("\u8bf7\u8f93\u5165\u641c\u7d22\u5185\u5bb9");
 				comboBox_year.setSelectedIndex(0);
 				comboBox_month.setSelectedIndex(0);
 				comboBox_day.setSelectedIndex(0);
-				label.setText("暨大头条");
+				label.setText("\u66a8\u5927\u5934\u6761");
 				change(NewsCrawer.NewsList, NewsCrawer.dateList,NewsCrawer.contentlist);
 				page = 0;
 				label_1.setText(title.get(page*5+0));
